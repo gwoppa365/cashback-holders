@@ -39,7 +39,6 @@ export default function Navbar() {
           {[
             { label: "Overview",     href: "#overview" },
             { label: "Leaderboard",  href: "#leaderboard" },
-            { label: "Distribution", href: "#distribution" },
             { label: "Mechanics",    href: "#mechanics" },
           ].map((l) => (
             <a key={l.label} href={l.href} style={{
