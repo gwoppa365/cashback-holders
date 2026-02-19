@@ -2,23 +2,19 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Cashback Holders — Earn $CASHBACK Rewards",
-  description: "Hold $CASHBACK and earn automatically. Fees distributed based on hold time. Track your rewards and climb the leaderboard live.",
+  title: "Cashback Holders — On-chain Fee Distribution Protocol",
+  description: "A passive yield protocol on Solana. $CASHBACK holders receive a proportional share of all trading fees, weighted by hold duration and on-chain rank.",
   openGraph: {
-    title: "Cashback Holders",
-    description: "Hold $CASHBACK. Earn rewards. Climb the leaderboard.",
+    title: "Cashback Holders Protocol",
+    description: "Earn from every $CASHBACK trade. Automatically distributed to holders based on hold time.",
     type: "website",
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

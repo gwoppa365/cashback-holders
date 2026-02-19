@@ -2,26 +2,20 @@
 import { useState } from "react";
 import { MOCK_HOLDERS, getBadgeColor, getBadgeLabel, formatHoldTime } from "@/lib/mock-data";
 
-function CopyButton({ text }: { text: string }) {
+function CopyBtn({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
   return (
     <button
-      onClick={() => { navigator.clipboard.writeText(text); setCopied(true); setTimeout(() => setCopied(false), 1500); }}
-      title="Copy address"
+      onClick={(e) => { e.stopPropagation(); navigator.clipboard.writeText(text); setCopied(true); setTimeout(() => setCopied(false), 1500); }}
+      title="Copy full address"
       style={{
-        background: "none", border: "none", cursor: "pointer",
-        color: copied ? "var(--green)" : "var(--text-dim)",
-        fontSize: 11, padding: "2px 4px",
-        fontFamily: "var(--font-mono)",
-        transition: "color 0.15s",
+        background: "none", border: "none", cursor: "pointer", padding: "1px 4px",
+        color: copied ? "var(--green-bright)" : "var(--text-dim)",
+        fontFamily: "var(--font-mono)", fontSize: 10, transition: "color 0.15s",
       }}
-    >
-      {copied ? "✓" : "⧉"}
-    </button>
+    >{copied ? "✓" : "⧉"}</button>
   );
 }
-
-const RANK_COLORS: Record<number, string> = { 1: "#f0c040", 2: "#9aa5b4", 3: "#cd7f32" };
 
 export default function Leaderboard() {
   const [sortBy, setSortBy] = useState<"holdTime" | "balance">("holdTime");
@@ -33,143 +27,128 @@ export default function Leaderboard() {
   ).map((h, i) => ({ ...h, rank: i + 1 }));
 
   return (
-    <section id="leaderboard" style={{ padding: "80px 0", background: "var(--bg)" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 20px" }}>
+    <section id="leaderboard" style={{ padding: "80px 0", background: "var(--bg)", borderTop: "1px solid var(--border)" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
 
-        {/* Header */}
-        <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", marginBottom: 24, flexWrap: "wrap", gap: 16 }}>
+        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 32, gap: 16, flexWrap: "wrap" }}>
           <div>
-            <div style={{ fontFamily: "var(--font-sans)", fontSize: 11, fontWeight: 500, color: "var(--text-dim)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 8 }}>
-              Leaderboard
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--text-dim)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>
+              PROTOCOL / 01
             </div>
-            <h2 style={{ fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: 24, color: "var(--text)", letterSpacing: "-0.03em", lineHeight: 1 }}>
-              Top $CASHBACK Holders
+            <h2 style={{ fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: 22, color: "var(--text)", letterSpacing: "-0.03em", marginBottom: 6 }}>
+              Distribution Registry
             </h2>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: 13, color: "var(--text-muted)", lineHeight: 1.6, maxWidth: 420 }}>
+              Holders ranked by hold duration. Fee distribution is weighted — longer hold time means a higher allocation share.
+            </p>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            {/* Sort tabs */}
-            <div style={{ display: "flex", background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: "var(--radius-sm)", padding: 3, gap: 2 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <div style={{ display: "flex", background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: "var(--radius-sm)", padding: 3 }}>
               {[{ key: "holdTime", label: "Hold Time" }, { key: "balance", label: "Balance" }].map(({ key, label }) => (
-                <button
-                  key={key}
-                  onClick={() => setSortBy(key as "holdTime" | "balance")}
-                  style={{
-                    background: sortBy === key ? "var(--bg-elevated)" : "transparent",
-                    border: sortBy === key ? "1px solid var(--border)" : "1px solid transparent",
-                    color: sortBy === key ? "var(--text)" : "var(--text-muted)",
-                    fontFamily: "var(--font-sans)",
-                    fontSize: 12,
-                    fontWeight: 500,
-                    padding: "5px 12px",
-                    borderRadius: 4,
-                    cursor: "pointer",
-                    transition: "all 0.15s",
-                  }}
-                >{label}</button>
+                <button key={key} onClick={() => setSortBy(key as any)} style={{
+                  background: sortBy === key ? "var(--bg-hover)" : "transparent",
+                  border: sortBy === key ? "1px solid var(--border)" : "1px solid transparent",
+                  color: sortBy === key ? "var(--text)" : "var(--text-muted)",
+                  fontFamily: "var(--font-sans)", fontSize: 11, fontWeight: 500,
+                  padding: "4px 10px", borderRadius: 4, cursor: "pointer", transition: "all 0.15s",
+                }}>{label}</button>
               ))}
             </div>
-
-            {/* Live dot */}
             <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
-              <span style={{ position: "relative", display: "inline-flex", width: 6, height: 6 }}>
-                <span className="animate-ping" style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "var(--green)", opacity: 0.4 }} />
-                <span style={{ position: "relative", width: 6, height: 6, borderRadius: "50%", background: "var(--green)", display: "inline-block" }} />
+              <span style={{ position: "relative", display: "inline-flex", width: 5, height: 5 }}>
+                <span className="animate-ping" style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "var(--green-bright)", opacity: 0.4 }} />
+                <span style={{ position: "relative", width: 5, height: 5, borderRadius: "50%", background: "var(--green-bright)", display: "inline-block" }} />
               </span>
-              <span style={{ fontFamily: "var(--font-sans)", fontSize: 11, color: "var(--text-dim)" }}>Live</span>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--text-dim)", letterSpacing: "0.06em" }}>LIVE</span>
             </div>
           </div>
         </div>
 
         {/* Table */}
-        <div style={{ border: "1px solid var(--border)", borderRadius: "var(--radius-lg)", overflow: "hidden" }}>
-          {/* Table header */}
+        <div style={{ border: "1px solid var(--border)", borderRadius: "var(--radius-lg)", overflow: "hidden", background: "var(--bg-card)" }}>
+          {/* Header */}
           <div style={{
             display: "grid",
-            gridTemplateColumns: "52px 1fr 140px 90px 110px 120px",
-            padding: "10px 20px",
-            background: "var(--bg-card)",
+            gridTemplateColumns: "44px 200px 1fr 100px 120px 80px 130px",
+            padding: "9px 20px",
             borderBottom: "1px solid var(--border)",
+            background: "var(--bg-elevated)",
           }}>
-            {["#", "WALLET", "BALANCE", "SUPPLY %", "HOLD TIME", "STATUS"].map((col) => (
-              <div key={col} style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: 10,
-                fontWeight: 600,
-                color: "var(--text-dim)",
-                letterSpacing: "0.07em",
-                textTransform: "uppercase",
-              }}>{col}</div>
+            {["#", "WALLET", "BALANCE", "SUPPLY", "HOLD TIME", "YIELD WT.", "STATUS"].map((col) => (
+              <div key={col} style={{ fontFamily: "var(--font-mono)", fontSize: 9, fontWeight: 600, color: "var(--text-dim)", letterSpacing: "0.1em" }}>{col}</div>
             ))}
           </div>
 
-          {sorted.map((holder, idx) => {
-            const badgeColor = getBadgeColor(holder.badge);
-            const rankColor = RANK_COLORS[holder.rank] || "var(--text-dim)";
+          {sorted.map((h, idx) => {
+            const badgeColor = getBadgeColor(h.badge);
+            const totalHoldHours = h.holdDays * 24 + h.holdHours;
+            const maxHoldHours = 14 * 24 + 6;
+            const yieldWeight = Math.round((totalHoldHours / maxHoldHours) * 100);
+
             return (
-              <div
-                key={holder.wallet}
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "52px 1fr 140px 90px 110px 120px",
-                  padding: "13px 20px",
-                  borderBottom: idx < sorted.length - 1 ? "1px solid var(--border-muted)" : "none",
-                  alignItems: "center",
-                  transition: "background 0.1s",
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = "var(--bg-hover)")}
-                onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
-              >
-                <div style={{ fontFamily: "var(--font-mono)", fontSize: 13, fontWeight: 600, color: rankColor }}>
-                  {holder.rank}
+              <div key={h.wallet} className="table-row" style={{
+                display: "grid",
+                gridTemplateColumns: "44px 200px 1fr 100px 120px 80px 130px",
+                padding: "12px 20px",
+                borderBottom: idx < sorted.length - 1 ? "1px solid var(--border-subtle)" : "none",
+                alignItems: "center",
+                transition: "background 0.1s",
+                cursor: "default",
+              }}>
+                <div style={{
+                  fontFamily: "var(--font-mono)", fontSize: 12, fontWeight: 600,
+                  color: h.rank <= 3 ? ["#e3b341","#8b949e","#b08968"][h.rank - 1] : "var(--text-dim)",
+                }}>
+                  {h.rank <= 3 ? `0${h.rank}` : h.rank}
                 </div>
 
-                <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                  <span style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--text)" }}>
-                    {holder.wallet}
-                  </span>
-                  <CopyButton text={holder.walletFull} />
-                  {holder.isDev && (
+                <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+                  <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text)" }}>{h.wallet}</span>
+                  <CopyBtn text={h.walletFull} />
+                  {h.isDev && (
                     <span style={{
-                      fontFamily: "var(--font-sans)", fontSize: 9, fontWeight: 600,
-                      color: "var(--yellow)", background: "rgba(210,153,34,0.1)",
-                      border: "1px solid rgba(210,153,34,0.3)",
-                      padding: "1px 5px", borderRadius: 3,
-                      textTransform: "uppercase", letterSpacing: "0.05em",
-                    }}>Dev</span>
+                      fontFamily: "var(--font-mono)", fontSize: 8, fontWeight: 600,
+                      color: "var(--yellow)", background: "rgba(187,128,9,0.1)",
+                      border: "1px solid rgba(187,128,9,0.25)",
+                      padding: "1px 4px", borderRadius: 2, letterSpacing: "0.08em",
+                    }}>DEV</span>
                   )}
                 </div>
 
-                <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--text)" }}>
-                  {(holder.balance / 1_000_000).toFixed(1)}M
+                <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text)" }}>
+                  {(h.balance / 1_000_000).toFixed(2)}M
                 </div>
 
-                <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                  <div style={{ flex: 1, maxWidth: 40, height: 2, background: "var(--border)", borderRadius: 1, overflow: "hidden" }}>
-                    <div style={{ width: `${Math.min(holder.pct * 8, 100)}%`, height: "100%", background: "var(--green)" }} />
+                <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+                  <div style={{ width: 32, height: 2, background: "var(--border)", borderRadius: 1, overflow: "hidden" }}>
+                    <div style={{ width: `${Math.min(h.pct * 8, 100)}%`, height: "100%", background: "var(--green)" }} />
                   </div>
-                  <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-muted)" }}>
-                    {holder.pct}%
-                  </span>
+                  <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--text-muted)" }}>{h.pct}%</span>
                 </div>
 
-                <div style={{ fontFamily: "var(--font-mono)", fontSize: 12, fontWeight: 500, color: "var(--green)" }}>
-                  {formatHoldTime(holder.holdHours, holder.holdDays)}
+                <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 500, color: "var(--green-bright)" }}>
+                  {formatHoldTime(h.holdHours, h.holdDays)}
+                </div>
+
+                <div>
+                  <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                    <div style={{ width: 28, height: 2, background: "var(--border)", borderRadius: 1, overflow: "hidden" }}>
+                      <div style={{ width: `${yieldWeight}%`, height: "100%", background: "var(--blue)" }} />
+                    </div>
+                    <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--text-muted)" }}>{yieldWeight}%</span>
+                  </div>
                 </div>
 
                 <div>
                   <span style={{
-                    fontFamily: "var(--font-sans)",
-                    fontSize: 11,
-                    fontWeight: 500,
+                    fontFamily: "var(--font-sans)", fontSize: 10, fontWeight: 500,
                     color: badgeColor,
-                    background: `${badgeColor}14`,
-                    border: `1px solid ${badgeColor}30`,
-                    padding: "2px 8px",
-                    borderRadius: 100,
-                    whiteSpace: "nowrap",
+                    background: `${badgeColor}12`,
+                    border: `1px solid ${badgeColor}28`,
+                    padding: "2px 8px", borderRadius: 100, whiteSpace: "nowrap",
                   }}>
-                    {getBadgeLabel(holder.badge)}
+                    {getBadgeLabel(h.badge)}
                   </span>
                 </div>
               </div>
@@ -177,9 +156,14 @@ export default function Leaderboard() {
           })}
         </div>
 
-        <p style={{ marginTop: 12, fontFamily: "var(--font-sans)", fontSize: 11, color: "var(--text-dim)", textAlign: "right" }}>
-          Mock data — live on-chain data loads after token CA is set
-        </p>
+        <div style={{ display: "flex", justifyContent: "space-between", marginTop: 12 }}>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: 11, color: "var(--text-dim)" }}>
+            Mock data shown — live on-chain data activates once contract address is configured
+          </p>
+          <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-dim)" }}>
+            10 / 1,247 holders
+          </p>
+        </div>
       </div>
     </section>
   );

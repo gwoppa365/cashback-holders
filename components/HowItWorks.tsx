@@ -1,122 +1,132 @@
 "use client";
 
-const steps = [
-  {
-    num: "01",
-    title: "Acquire $CASHBACK",
-    desc: "Buy $CASHBACK on Pump.fun. Your hold timer starts from the moment your wallet receives tokens. No lock-up required.",
-  },
-  {
-    num: "02",
-    title: "Hold to earn more",
-    desc: "Fee distribution is weighted by hold duration and on-chain rank. Every hour you hold increases your allocation share.",
-  },
-  {
-    num: "03",
-    title: "Receive distributed fees",
-    desc: "SOL fees are distributed automatically to wallets based on hold time and leaderboard position. No claiming needed.",
-  },
-];
-
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" style={{ padding: "80px 0", background: "var(--bg)", borderTop: "1px solid var(--border)" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 20px" }}>
+    <section id="mechanics" style={{ padding: "80px 0", background: "var(--bg)", borderTop: "1px solid var(--border)" }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px" }}>
 
-        {/* Header */}
-        <div style={{ maxWidth: 480, marginBottom: 48 }}>
-          <div style={{ fontFamily: "var(--font-sans)", fontSize: 11, fontWeight: 500, color: "var(--text-dim)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 8 }}>
-            How It Works
+        <div style={{ marginBottom: 48 }}>
+          <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--text-dim)", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>
+            PROTOCOL / 03
           </div>
-          <h2 style={{ fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: 24, color: "var(--text)", letterSpacing: "-0.03em", lineHeight: 1.2, marginBottom: 12 }}>
-            Three steps to earning $CASHBACK rewards
+          <h2 style={{ fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: 22, color: "var(--text)", letterSpacing: "-0.03em", marginBottom: 8 }}>
+            Protocol Mechanics
           </h2>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: 14, color: "var(--text-muted)", lineHeight: 1.65 }}>
-            Rewards are passive. No staking contracts, no governance votes. Just hold and earn.
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: 13, color: "var(--text-muted)", lineHeight: 1.65, maxWidth: 520 }}>
+            The distribution engine is simple and fully verifiable on-chain. No admin keys, no governance overhead.
           </p>
         </div>
 
-        {/* Steps */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 48 }}>
-          {steps.map((step) => (
-            <div
-              key={step.num}
-              style={{
+        {/* Steps — horizontal flow */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 28px 1fr 28px 1fr", gap: 0, alignItems: "center", marginBottom: 64 }}>
+
+          {[
+            {
+              step: "01",
+              title: "Acquire & hold",
+              desc: "Purchase $CASHBACK on Pump.fun. Your hold clock starts from the first inbound transaction to your wallet. No minimum hold period.",
+            },
+            null, // arrow
+            {
+              step: "02",
+              title: "Accumulate weight",
+              desc: "Your distribution weight compounds over time. Every additional hour increases your share of the fee pool relative to other holders.",
+            },
+            null, // arrow
+            {
+              step: "03",
+              title: "Receive fees",
+              desc: "SOL fees accumulate in the creator wallet and are distributed to the holder registry. Longer holders receive a proportionally larger share.",
+            },
+          ].map((item, i) =>
+            item === null ? (
+              <div key={i} style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                <svg width="20" height="8" viewBox="0 0 20 8" fill="none">
+                  <path d="M0 4H18M15 1L19 4L15 7" stroke="var(--text-dim)" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              </div>
+            ) : (
+              <div key={i} style={{
                 background: "var(--bg-card)",
                 border: "1px solid var(--border)",
                 borderRadius: "var(--radius-lg)",
-                padding: "28px 24px",
+                padding: "24px",
                 transition: "border-color 0.15s",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--text-dim)")}
               onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
-            >
-              <div style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: 11,
-                fontWeight: 500,
-                color: "var(--green)",
-                marginBottom: 20,
-                letterSpacing: "0.04em",
-              }}>
-                {step.num}
+              >
+                <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--green-bright)", marginBottom: 16, letterSpacing: "0.06em" }}>{item.step}</div>
+                <h3 style={{ fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: 15, color: "var(--text)", letterSpacing: "-0.02em", marginBottom: 10 }}>{item.title}</h3>
+                <p style={{ fontFamily: "var(--font-sans)", fontSize: 12, color: "var(--text-muted)", lineHeight: 1.7 }}>{item.desc}</p>
               </div>
-              <h3 style={{
-                fontFamily: "var(--font-sans)",
-                fontWeight: 600,
-                fontSize: 16,
-                color: "var(--text)",
-                letterSpacing: "-0.02em",
-                marginBottom: 10,
-                lineHeight: 1.3,
-              }}>
-                {step.title}
-              </h3>
-              <p style={{
-                fontFamily: "var(--font-sans)",
-                fontSize: 13,
-                color: "var(--text-muted)",
-                lineHeight: 1.65,
-              }}>
-                {step.desc}
-              </p>
-            </div>
-          ))}
+            )
+          )}
         </div>
 
-        {/* Bottom stats bar */}
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          border: "1px solid var(--border)",
-          borderRadius: "var(--radius-lg)",
-          overflow: "hidden",
-          background: "var(--bg-card)",
-        }}>
-          {[
-            { value: "0.5%",     label: "of every trade goes to holders" },
-            { value: "On-chain", label: "hold time tracking, fully verifiable" },
-            { value: "Auto",     label: "payouts, no wallet interaction needed" },
-          ].map((stat, i) => (
-            <div key={stat.label} style={{
-              padding: "28px 24px",
-              borderLeft: i > 0 ? "1px solid var(--border)" : "none",
-            }}>
-              <div style={{
-                fontFamily: "var(--font-mono)",
-                fontWeight: 600,
-                fontSize: 22,
-                color: "var(--text)",
-                letterSpacing: "-0.03em",
-                marginBottom: 6,
-              }}>
-                {stat.value}
-              </div>
-              <div style={{ fontFamily: "var(--font-sans)", fontSize: 13, color: "var(--text-muted)", lineHeight: 1.5 }}>
-                {stat.label}
-              </div>
+        {/* Protocol spec table */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+
+          {/* Left — parameters */}
+          <div style={{ border: "1px solid var(--border)", borderRadius: "var(--radius-lg)", overflow: "hidden" }}>
+            <div style={{ padding: "12px 16px", background: "var(--bg-elevated)", borderBottom: "1px solid var(--border)" }}>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--text-dim)", letterSpacing: "0.08em", textTransform: "uppercase" }}>Protocol Parameters</span>
             </div>
-          ))}
+            {[
+              { param: "Fee rate",              value: "0.5% per trade" },
+              { param: "Fee currency",          value: "SOL" },
+              { param: "Distribution method",   value: "Hold-time weighted" },
+              { param: "Minimum hold period",   value: "None" },
+              { param: "Claiming required",     value: "No — automatic" },
+              { param: "Staking required",      value: "No" },
+              { param: "Lock-up",               value: "No" },
+              { param: "Chain",                 value: "Solana" },
+            ].map((row, i) => (
+              <div key={row.param} style={{
+                display: "flex", justifyContent: "space-between", alignItems: "center",
+                padding: "10px 16px",
+                borderBottom: i < 7 ? "1px solid var(--border-subtle)" : "none",
+                background: i % 2 === 0 ? "var(--bg-card)" : "transparent",
+              }}>
+                <span style={{ fontFamily: "var(--font-sans)", fontSize: 12, color: "var(--text-muted)" }}>{row.param}</span>
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 500, color: "var(--text)" }}>{row.value}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Right — fee flow */}
+          <div style={{ border: "1px solid var(--border)", borderRadius: "var(--radius-lg)", overflow: "hidden" }}>
+            <div style={{ padding: "12px 16px", background: "var(--bg-elevated)", borderBottom: "1px solid var(--border)" }}>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--text-dim)", letterSpacing: "0.08em", textTransform: "uppercase" }}>Fee Flow</span>
+            </div>
+            <div style={{ padding: "20px 20px" }}>
+              {[
+                { label: "Trade executes on Pump.fun", note: "Buy or sell on bonding curve" },
+                { label: "0.5% fee collected in SOL",  note: "Deducted from trade value" },
+                { label: "Fees enter distribution pool", note: "Creator wallet accumulates" },
+                { label: "Holder registry snapshot",    note: "Hold time & balance indexed" },
+                { label: "Proportional distribution",   note: "Weighted by duration and rank" },
+                { label: "SOL arrives in holder wallet", note: "No action required by holder" },
+              ].map((step, i) => (
+                <div key={i} style={{ display: "flex", gap: 14, marginBottom: i < 5 ? 16 : 0 }}>
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 0 }}>
+                    <div style={{
+                      width: 20, height: 20, borderRadius: "50%", flexShrink: 0,
+                      background: i === 0 || i === 5 ? "var(--green-dim)" : "var(--bg-elevated)",
+                      border: `1px solid ${i === 0 || i === 5 ? "var(--green-border)" : "var(--border)"}`,
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      fontFamily: "var(--font-mono)", fontSize: 8, color: i === 0 || i === 5 ? "var(--green-bright)" : "var(--text-dim)",
+                    }}>{i + 1}</div>
+                    {i < 5 && <div style={{ width: 1, height: 12, background: "var(--border-subtle)", margin: "2px 0" }} />}
+                  </div>
+                  <div style={{ paddingTop: 1 }}>
+                    <div style={{ fontFamily: "var(--font-sans)", fontSize: 12, fontWeight: 500, color: "var(--text)", marginBottom: 1 }}>{step.label}</div>
+                    <div style={{ fontFamily: "var(--font-sans)", fontSize: 11, color: "var(--text-dim)" }}>{step.note}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
