@@ -1,5 +1,5 @@
 "use client";
-
+// v2
 export default function Hero() {
   return (
     <section style={{
