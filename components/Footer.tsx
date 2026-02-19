@@ -65,9 +65,7 @@ export default function Footer() {
           <div>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 10, fontWeight: 600, color: "var(--text-dim)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 16 }}>Community</p>
             {[
-              { label: "X / Twitter", href: "https://twitter.com" },
-              { label: "Telegram",    href: "https://t.me" },
-              { label: "Discord",     href: "https://discord.com" },
+              { label: "X / Twitter", href: "https://x.com/CashbackHolders" },
             ].map(({ label, href }) => (
               <a key={label} href={href} target="_blank" rel="noopener noreferrer" style={{ display: "block", fontFamily: "var(--font-sans)", fontSize: 12, color: "var(--text-muted)", textDecoration: "none", marginBottom: 9, transition: "color 0.15s" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text)")}
