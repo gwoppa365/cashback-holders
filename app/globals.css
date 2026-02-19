@@ -77,11 +77,13 @@ body {
 @keyframes float-3 { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-22px) rotate(3deg)} }
 @keyframes float-4 { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-11px) rotate(-7deg)} }
 @keyframes float-5 { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-16px) rotate(5deg)} }
+@keyframes float-logo { 0%,100%{transform:translateY(0) rotate(-1deg)} 50%{transform:translateY(-20px) rotate(1deg)} }
 .float-1 { animation: float-1 6s ease-in-out infinite; }
 .float-2 { animation: float-2 7s ease-in-out infinite 0.5s; }
 .float-3 { animation: float-3 5.5s ease-in-out infinite 1s; }
 .float-4 { animation: float-4 8s ease-in-out infinite 1.5s; }
 .float-5 { animation: float-5 6.5s ease-in-out infinite 2s; }
+.float-logo { animation: float-logo 5s ease-in-out infinite; }
 
 /* Ping for live dot */
 @keyframes ping { 75%,100%{transform:scale(2);opacity:0} }
