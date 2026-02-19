@@ -51,20 +51,20 @@ export default function HowItWorks() {
           {[
             {
               step: "01",
-              title: "Acquire & hold",
-              desc: "Purchase $CASHBACK on Pump.fun. Your hold clock starts from the first inbound transaction to your wallet. No minimum hold period.",
+              title: "Buy & hold $CASHBACK",
+              desc: "Purchase $CASHBACK on Pump.fun. Your hold clock starts from your first transaction. The longer you hold, the more weight you accumulate — no minimum period required.",
             },
-            null, // arrow
+            null,
             {
               step: "02",
-              title: "Accumulate weight",
-              desc: "Your distribution weight compounds over time. Every additional hour increases your share of the fee pool relative to other holders.",
+              title: "Creator fees accumulate",
+              desc: "Every buy and sell generates creator fees collected in SOL. These fees build up in real-time and are allocated to holders — with a heavier share going to those who hold the longest.",
             },
-            null, // arrow
+            null,
             {
               step: "03",
-              title: "Receive fees",
-              desc: "SOL fees accumulate in the creator wallet and are distributed to the holder registry. Longer holders receive a proportionally larger share.",
+              title: "Receive your allocation",
+              desc: "Our custom escrow contract scrapes holder data on-chain in real-time and distributes SOL directly to your wallet. Hold more, hold longer — earn more. Fully automatic.",
             },
           ].map((item, i) =>
             item === null ? (
@@ -131,12 +131,12 @@ export default function HowItWorks() {
             </div>
             <div style={{ padding: "20px 20px" }}>
               {[
-                { label: "Trade executes on Pump.fun", note: "Buy or sell on bonding curve" },
-                { label: "Creator fees collected in SOL",  note: "Deducted from trade value" },
-                { label: "Fees enter distribution pool", note: "Creator wallet accumulates" },
-                { label: "Holder registry snapshot",    note: "Hold time & balance indexed" },
-                { label: "Proportional distribution",   note: "Weighted by duration and rank" },
-                { label: "SOL arrives in holder wallet", note: "No action required by holder" },
+                { label: "Trade executes on Pump.fun",          note: "Buy or sell on bonding curve" },
+                { label: "Creator fees collected in SOL",       note: "Fees accumulate in the creator wallet automatically" },
+                { label: "Real-time scrape via escrow contract", note: "On-chain holder data indexed — balances & hold time captured" },
+                { label: "Hold-time weighting applied",         note: "Holders who hold longer receive a larger allocation" },
+                { label: "Proportional distribution calculated", note: "The longer you hold, the greater your share of creator fees" },
+                { label: "SOL distributed to holder wallets",   note: "Paid out automatically — no claiming, no staking" },
               ].map((step, i) => (
                 <div key={i} style={{ display: "flex", gap: 14, marginBottom: i < 5 ? 16 : 0 }}>
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 0 }}>
