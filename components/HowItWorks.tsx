@@ -12,9 +12,37 @@ export default function HowItWorks() {
           <h2 style={{ fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: 22, color: "var(--text)", letterSpacing: "-0.03em", marginBottom: 8 }}>
             Protocol Mechanics
           </h2>
-          <p style={{ fontFamily: "var(--font-sans)", fontSize: 13, color: "var(--text-muted)", lineHeight: 1.65, maxWidth: 520 }}>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: 13, color: "var(--text-muted)", lineHeight: 1.65, maxWidth: 520, marginBottom: 20 }}>
             The distribution engine is simple and fully verifiable on-chain. No admin keys, no governance overhead.
           </p>
+
+          {/* Escrow callout */}
+          <div style={{
+            display: "inline-flex",
+            alignItems: "flex-start",
+            gap: 12,
+            background: "var(--bg-card)",
+            border: "1px solid var(--border)",
+            borderLeft: "3px solid var(--green)",
+            borderRadius: "var(--radius)",
+            padding: "14px 18px",
+            maxWidth: 620,
+          }}>
+            <div style={{
+              width: 20, height: 20, borderRadius: 4, flexShrink: 0, marginTop: 1,
+              background: "var(--green-dim)", border: "1px solid var(--green-border)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--green)",
+            }}>✓</div>
+            <div>
+              <div style={{ fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: 13, color: "var(--text)", marginBottom: 3 }}>
+                Custom escrow contract with real-time on-chain scraping
+              </div>
+              <div style={{ fontFamily: "var(--font-sans)", fontSize: 12, color: "var(--text-muted)", lineHeight: 1.6 }}>
+                We built a custom escrow contract that scrapes holder data in real-time directly from the Solana blockchain — ensuring every distribution is calculated fairly, transparently, and without any manual intervention.
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Steps — horizontal flow */}
@@ -76,6 +104,8 @@ export default function HowItWorks() {
               { param: "Fee rate",              value: "0.5% per trade" },
               { param: "Fee currency",          value: "SOL" },
               { param: "Distribution method",   value: "Hold-time weighted" },
+              { param: "Settlement",             value: "Custom escrow contract" },
+              { param: "Data source",            value: "Real-time on-chain scrape" },
               { param: "Minimum hold period",   value: "None" },
               { param: "Claiming required",     value: "No — automatic" },
               { param: "Staking required",      value: "No" },

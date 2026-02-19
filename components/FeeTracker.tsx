@@ -105,9 +105,16 @@ export default function FeeTracker() {
             {/* Distribution formula note */}
             <div style={{ marginTop: 16, padding: "14px 16px", background: "var(--bg)", border: "1px solid var(--border-subtle)", borderRadius: "var(--radius)", borderLeft: "2px solid var(--green)" }}>
               <div style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--text-dim)", marginBottom: 6, letterSpacing: "0.06em" }}>DISTRIBUTION FORMULA</div>
-              <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-muted)", lineHeight: 1.7 }}>
+              <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-muted)", lineHeight: 1.7, marginBottom: 8 }}>
                 holder_share = (hold_hours / total_hold_hours) × fee_pool
               </p>
+              <div style={{ height: 1, background: "var(--border-subtle)", marginBottom: 8 }} />
+              <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--green)" }}>✓</span>
+                <span style={{ fontFamily: "var(--font-sans)", fontSize: 11, color: "var(--text-dim)" }}>
+                  Settled via custom escrow contract · holder data scraped in real-time from Solana
+                </span>
+              </div>
             </div>
           </div>
         </div>
