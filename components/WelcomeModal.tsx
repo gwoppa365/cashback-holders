@@ -93,9 +93,7 @@ export default function WelcomeModal() {
           lineHeight: 1.65,
           marginBottom: 24,
         }}>
-          Hold{" "}
-          <span style={{ color: "#4ade80", fontWeight: 600 }}>$CASHBACK</span>
-          {" "}and earn rewards automatically. Fees distributed will get paid out and allocated based on longer hold times, and rankings will be reflected on the leaderboards.
+          This is not Pump.fun's trader fee split. <span style={{ color: "#4ade80", fontWeight: 600 }}>$CASHBACK</span> runs its own holder rewards protocol — creator fees from every trade flow directly to holders, weighted by how long you hold. Hold longer, earn a bigger share.
         </p>
 
         {/* Steps */}

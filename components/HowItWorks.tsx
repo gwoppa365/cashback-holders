@@ -13,7 +13,7 @@ export default function HowItWorks() {
             Protocol Mechanics
           </h2>
           <p style={{ fontFamily: "var(--font-sans)", fontSize: 13, color: "var(--text-muted)", lineHeight: 1.65, maxWidth: 520, marginBottom: 20 }}>
-            The distribution engine is simple and fully verifiable on-chain. No admin keys, no governance overhead.
+            This is not Pump.fun's built-in trader fee split. $CASHBACK operates its own distribution protocol — creator fees go to holders, weighted by hold time. The longer you hold, the larger your cut.
           </p>
 
           {/* Escrow callout */}

@@ -67,7 +67,7 @@ export default function Hero() {
               maxWidth: 500,
               marginBottom: 40,
             }}>
-              Pump.fun creator fees are collected in SOL on every buy and sell. Those fees are distributed automatically to $CASHBACK holders — the longer you hold, the greater your allocation. No staking. No lock-up.
+              Unlike Pump.fun's built-in trader fee split, $CASHBACK distributes creator fees directly to holders — not to traders. Every buy and sell generates SOL fees that flow to the holder pool. The longer you hold, the greater your share. No staking. No lock-up.
             </p>
 
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 64 }}>
