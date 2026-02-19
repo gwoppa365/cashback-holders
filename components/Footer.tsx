@@ -8,21 +8,12 @@ export default function Footer() {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 32, marginBottom: 48 }}>
           {/* Logo + tagline */}
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
-              <div style={{
-                width: 30, height: 30,
-                background: "linear-gradient(135deg, #4ade80, #22c55e)",
-                borderRadius: 8,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 15,
-              }}>
-                💰
-              </div>
-              <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 16, color: "#fff", letterSpacing: "-0.02em" }}>
-                cashback<span style={{ color: "#4ade80" }}>holders</span>
-              </span>
+            <div style={{ marginBottom: 12 }}>
+              <img
+                src="/logo.png"
+                alt="Cashback Holders"
+                style={{ height: 52, width: "auto", objectFit: "contain" }}
+              />
             </div>
             <p style={{ fontFamily: "var(--font-body)", fontSize: 14, color: "var(--text-muted)", fontWeight: 400, maxWidth: 240, lineHeight: 1.6 }}>
               The Solana token that rewards holders. Hold $CASHBACK, earn automatically.

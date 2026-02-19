@@ -30,28 +30,12 @@ export default function Navbar() {
         height: 60,
       }}>
         {/* Logo */}
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <div style={{
-            width: 32, height: 32,
-            background: "linear-gradient(135deg, #4ade80, #22c55e)",
-            borderRadius: 8,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: 16,
-            boxShadow: "0 0 12px rgba(74,222,128,0.3)",
-          }}>
-            💰
-          </div>
-          <span style={{
-            fontFamily: "var(--font-display)",
-            fontWeight: 700,
-            fontSize: 16,
-            color: "#fff",
-            letterSpacing: "-0.02em",
-          }}>
-            cashback<span style={{ color: "#4ade80" }}>holders</span>
-          </span>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <img
+            src="/logo.png"
+            alt="Cashback Holders"
+            style={{ height: 44, width: "auto", objectFit: "contain" }}
+          />
         </div>
 
         {/* Center links */}
