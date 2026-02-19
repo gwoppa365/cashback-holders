@@ -132,7 +132,7 @@ export default function HowItWorks() {
             <div style={{ padding: "20px 20px" }}>
               {[
                 { label: "Trade executes on Pump.fun", note: "Buy or sell on bonding curve" },
-                { label: "0.5% fee collected in SOL",  note: "Deducted from trade value" },
+                { label: "Creator fees collected in SOL",  note: "Deducted from trade value" },
                 { label: "Fees enter distribution pool", note: "Creator wallet accumulates" },
                 { label: "Holder registry snapshot",    note: "Hold time & balance indexed" },
                 { label: "Proportional distribution",   note: "Weighted by duration and rank" },
