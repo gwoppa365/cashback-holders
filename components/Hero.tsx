@@ -93,25 +93,6 @@ export default function Hero() {
               >View distribution rankings</a>
             </div>
 
-            {/* Protocol metrics row */}
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, auto)", gap: 0, borderTop: "1px solid var(--border)" }}>
-              {[
-                { value: "◎ 142.8",  label: "SOL Distributed" },
-                { value: "1,247",    label: "Active Holders" },
-                { value: "0.5%",     label: "Fee Rate" },
-                { value: "14d 6h",   label: "Top Hold Time" },
-              ].map((s, i) => (
-                <div key={s.label} style={{
-                  paddingTop: 20,
-                  paddingRight: i < 3 ? 32 : 0,
-                  paddingLeft: i > 0 ? 32 : 0,
-                  borderLeft: i > 0 ? "1px solid var(--border)" : "none",
-                }}>
-                  <div style={{ fontFamily: "var(--font-mono)", fontWeight: 500, fontSize: 18, color: "var(--text)", letterSpacing: "-0.02em", marginBottom: 4 }}>{s.value}</div>
-                  <div style={{ fontFamily: "var(--font-sans)", fontSize: 11, color: "var(--text-dim)", textTransform: "uppercase", letterSpacing: "0.06em" }}>{s.label}</div>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* RIGHT — Terminal card */}
