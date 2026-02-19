@@ -5,7 +5,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -14,48 +14,78 @@ export default function Navbar() {
     <nav style={{
       position: "fixed",
       top: 0, left: 0, right: 0,
-      zIndex: 50,
-      background: scrolled ? "rgba(10,10,18,0.95)" : "rgba(10,10,18,0.8)",
+      zIndex: 100,
+      height: 56,
+      background: scrolled ? "rgba(14,16,20,0.97)" : "rgba(14,16,20,0.8)",
       backdropFilter: "blur(12px)",
-      borderBottom: `1px solid ${scrolled ? "#1e2040" : "transparent"}`,
-      transition: "background 0.2s, border-color 0.2s",
+      borderBottom: `1px solid ${scrolled ? "var(--border)" : "transparent"}`,
+      transition: "border-color 0.2s, background 0.2s",
     }}>
       <div style={{
-        maxWidth: 1100,
+        maxWidth: 1200,
         margin: "0 auto",
-        padding: "0 24px",
+        padding: "0 20px",
+        height: "100%",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        height: 60,
       }}>
         {/* Logo */}
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <img
-            src="/logo.png"
-            alt="Cashback Holders"
-            style={{ height: 44, width: "auto", objectFit: "contain" }}
-          />
-        </div>
+        <a href="#" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 8 }}>
+          <span style={{
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: 26,
+            height: 26,
+            background: "var(--green)",
+            borderRadius: 6,
+            fontFamily: "var(--font-mono)",
+            fontWeight: 700,
+            fontSize: 13,
+            color: "#0e1014",
+          }}>$</span>
+          <span style={{
+            fontFamily: "var(--font-sans)",
+            fontWeight: 600,
+            fontSize: 15,
+            color: "var(--text)",
+            letterSpacing: "-0.02em",
+          }}>
+            cashback<span style={{ color: "var(--green)" }}>holders</span>
+          </span>
+        </a>
 
-        {/* Center links */}
-        <div style={{ display: "flex", gap: 32, alignItems: "center" }}>
-          {["Leaderboard", "Fee Tracker", "How It Works"].map((link) => (
+        {/* Nav links */}
+        <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
+          {[
+            { label: "Leaderboard", href: "#leaderboard" },
+            { label: "Fee Tracker", href: "#fee-tracker" },
+            { label: "How It Works", href: "#how-it-works" },
+          ].map((link) => (
             <a
-              key={link}
-              href={`#${link.toLowerCase().replace(/\s+/g, "-")}`}
+              key={link.label}
+              href={link.href}
               style={{
-                color: "#8888aa",
+                fontFamily: "var(--font-sans)",
                 fontSize: 14,
                 fontWeight: 500,
-                fontFamily: "var(--font-body)",
+                color: "var(--text-muted)",
                 textDecoration: "none",
-                transition: "color 0.15s",
+                padding: "6px 12px",
+                borderRadius: "var(--radius-sm)",
+                transition: "color 0.15s, background 0.15s",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#8888aa")}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.color = "var(--text)";
+                (e.currentTarget as HTMLElement).style.background = "var(--bg-hover)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.color = "var(--text-muted)";
+                (e.currentTarget as HTMLElement).style.background = "transparent";
+              }}
             >
-              {link}
+              {link.label}
             </a>
           ))}
         </div>
@@ -66,28 +96,20 @@ export default function Navbar() {
           target="_blank"
           rel="noopener noreferrer"
           style={{
-            background: "#4ade80",
-            color: "#0a0a12",
-            fontWeight: 700,
+            fontFamily: "var(--font-sans)",
+            fontWeight: 600,
             fontSize: 13,
-            padding: "9px 20px",
-            borderRadius: 8,
+            color: "#0e1014",
+            background: "var(--green)",
             textDecoration: "none",
-            fontFamily: "var(--font-display)",
-            letterSpacing: "-0.01em",
-            transition: "background 0.15s, box-shadow 0.15s",
-            boxShadow: "0 0 16px rgba(74,222,128,0.25)",
+            padding: "7px 16px",
+            borderRadius: "var(--radius-sm)",
+            transition: "opacity 0.15s",
           }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.background = "#86efac";
-            (e.currentTarget as HTMLElement).style.boxShadow = "0 0 24px rgba(74,222,128,0.4)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.background = "#4ade80";
-            (e.currentTarget as HTMLElement).style.boxShadow = "0 0 16px rgba(74,222,128,0.25)";
-          }}
+          onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.opacity = "0.85"}
+          onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.opacity = "1"}
         >
-          Buy $CASHBACK
+          Buy on Pump.fun
         </a>
       </div>
     </nav>

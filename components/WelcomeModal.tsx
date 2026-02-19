@@ -73,7 +73,7 @@ export default function WelcomeModal() {
 
         {/* Title */}
         <h2 style={{
-          fontFamily: "var(--font-display)",
+          fontFamily: "var(--font-sans)",
           fontWeight: 700,
           fontSize: 22,
           color: "#fff",
@@ -86,7 +86,7 @@ export default function WelcomeModal() {
 
         {/* Intro paragraph */}
         <p style={{
-          fontFamily: "var(--font-body)",
+          fontFamily: "var(--font-sans)",
           fontSize: 15,
           color: "#c0c0d8",
           textAlign: "center",
@@ -115,7 +115,7 @@ export default function WelcomeModal() {
             },
           ].map((step, i) => (
             <p key={i} style={{
-              fontFamily: "var(--font-body)",
+              fontFamily: "var(--font-sans)",
               fontSize: 14,
               color: "#c0c0d8",
               textAlign: "center",
@@ -130,7 +130,7 @@ export default function WelcomeModal() {
 
         {/* Disclaimer */}
         <p style={{
-          fontFamily: "var(--font-body)",
+          fontFamily: "var(--font-sans)",
           fontSize: 13,
           color: "#8888aa",
           textAlign: "center",
@@ -149,7 +149,7 @@ export default function WelcomeModal() {
             width: "100%",
             background: "#86efac",
             color: "#0a0a12",
-            fontFamily: "var(--font-display)",
+            fontFamily: "var(--font-sans)",
             fontWeight: 700,
             fontSize: 16,
             padding: "18px 24px",
@@ -190,7 +190,7 @@ export default function WelcomeModal() {
               <a
                 href={link.href}
                 style={{
-                  fontFamily: "var(--font-body)",
+                  fontFamily: "var(--font-sans)",
                   fontSize: 13,
                   color: "#8888aa",
                   textDecoration: "underline",

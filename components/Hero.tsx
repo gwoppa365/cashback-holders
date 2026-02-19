@@ -4,164 +4,120 @@ export default function Hero() {
   return (
     <section style={{
       background: "var(--bg)",
-      paddingTop: 100,
-      paddingBottom: 80,
-      position: "relative",
-      overflow: "hidden",
+      paddingTop: 56,
       minHeight: "100vh",
       display: "flex",
       alignItems: "center",
+      position: "relative",
+      overflow: "hidden",
     }}>
-      {/* Background dot grid */}
-      <div className="pattern-dots" style={{ position: "absolute", inset: 0, pointerEvents: "none" }} />
-
-      {/* Large green glow behind logo */}
-      <div style={{
-        position: "absolute",
-        top: "50%",
-        right: "5%",
-        transform: "translateY(-50%)",
-        width: 700,
-        height: 700,
-        background: "radial-gradient(circle, rgba(74,222,128,0.1) 0%, transparent 65%)",
-        pointerEvents: "none",
-      }} />
-
-      {/* Subtle left glow */}
-      <div style={{
-        position: "absolute",
-        top: "30%",
-        left: "-10%",
-        width: 500,
-        height: 500,
-        background: "radial-gradient(circle, rgba(74,222,128,0.05) 0%, transparent 70%)",
-        pointerEvents: "none",
-      }} />
+      <div className="bg-grid" style={{ position: "absolute", inset: 0, pointerEvents: "none", opacity: 0.6 }} />
 
       <div style={{
-        maxWidth: 1100,
+        maxWidth: 1200,
         margin: "0 auto",
-        padding: "0 24px",
-        position: "relative",
-        zIndex: 10,
+        padding: "80px 20px",
         width: "100%",
-        display: "flex",
+        display: "grid",
+        gridTemplateColumns: "1fr 420px",
+        gap: 60,
         alignItems: "center",
-        justifyContent: "space-between",
-        gap: 40,
-        flexWrap: "wrap",
+        position: "relative",
+        zIndex: 1,
       }}>
 
-        {/* LEFT — Text content */}
-        <div style={{ flex: "1 1 460px", maxWidth: 560 }}>
-
-          {/* Live pill */}
+        {/* LEFT */}
+        <div>
+          {/* Status badge */}
           <div style={{
             display: "inline-flex",
             alignItems: "center",
-            gap: 8,
-            background: "rgba(74,222,128,0.08)",
-            border: "1px solid rgba(74,222,128,0.25)",
+            gap: 7,
+            border: "1px solid var(--border)",
             borderRadius: 100,
-            padding: "6px 16px",
-            marginBottom: 28,
+            padding: "5px 12px",
+            marginBottom: 32,
+            background: "var(--bg-card)",
           }}>
-            <span style={{ position: "relative", display: "inline-flex", width: 7, height: 7 }}>
-              <span className="animate-ping" style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "#4ade80", opacity: 0.7 }} />
-              <span style={{ position: "relative", width: 7, height: 7, borderRadius: "50%", background: "#4ade80", display: "inline-block" }} />
+            <span style={{ position: "relative", display: "inline-flex", width: 6, height: 6 }}>
+              <span className="animate-ping" style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "var(--green)", opacity: 0.5 }} />
+              <span style={{ position: "relative", width: 6, height: 6, borderRadius: "50%", background: "var(--green)", display: "inline-block" }} />
             </span>
-            <span style={{ fontFamily: "var(--font-body)", fontSize: 13, fontWeight: 500, color: "#4ade80" }}>
-              Live on Solana · Pump.fun
+            <span style={{ fontFamily: "var(--font-sans)", fontSize: 12, fontWeight: 500, color: "var(--text-muted)" }}>
+              Live on Solana
             </span>
+            <span style={{ color: "var(--border)", fontSize: 12 }}>·</span>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--green)" }}>Pump.fun</span>
           </div>
 
-          {/* Heading */}
           <h1 style={{
-            fontFamily: "var(--font-display)",
+            fontFamily: "var(--font-sans)",
             fontWeight: 700,
-            fontSize: "clamp(36px, 5vw, 64px)",
-            lineHeight: 1.08,
-            letterSpacing: "-0.03em",
-            color: "#fff",
-            margin: "0 0 22px",
+            fontSize: "clamp(36px, 4.5vw, 58px)",
+            lineHeight: 1.1,
+            letterSpacing: "-0.04em",
+            color: "var(--text)",
+            marginBottom: 20,
           }}>
             Hold{" "}
-            <span style={{ color: "#4ade80", textShadow: "0 0 40px rgba(74,222,128,0.5)" }}>
-              $CASHBACK
-            </span>
+            <span style={{ color: "var(--green)" }}>$CASHBACK</span>
             <br />
-            and earn{" "}
-            <span style={{ color: "#4ade80", textShadow: "0 0 40px rgba(74,222,128,0.5)" }}>
-              automatically.
-            </span>
+            earn rewards<br />automatically.
           </h1>
 
-          {/* Subtitle */}
           <p style={{
-            fontFamily: "var(--font-body)",
-            fontSize: 17,
+            fontFamily: "var(--font-sans)",
+            fontSize: 16,
             fontWeight: 400,
-            lineHeight: 1.75,
-            color: "#8888aa",
-            maxWidth: 480,
-            margin: "0 0 40px",
+            lineHeight: 1.7,
+            color: "var(--text-muted)",
+            maxWidth: 440,
+            marginBottom: 36,
           }}>
-            Fees distributed based on hold time and ranking. The longer you hold, the more you earn. Climb the leaderboard.
+            Transaction fees are distributed to holders based on hold duration and on-chain rank. No claiming. No staking. Just hold.
           </p>
 
-          {/* CTA buttons */}
-          <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 52 }}>
             <a
               href="https://pump.fun"
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                background: "#4ade80",
-                color: "#0a0a12",
-                fontWeight: 700,
-                fontSize: 15,
-                padding: "14px 30px",
-                borderRadius: 10,
+                background: "var(--green)",
+                color: "#0e1014",
+                fontWeight: 600,
+                fontSize: 14,
+                padding: "10px 20px",
+                borderRadius: "var(--radius-sm)",
                 textDecoration: "none",
-                fontFamily: "var(--font-display)",
-                display: "inline-block",
-                boxShadow: "0 0 28px rgba(74,222,128,0.35)",
-                transition: "background 0.15s, transform 0.1s, box-shadow 0.15s",
+                fontFamily: "var(--font-sans)",
+                transition: "opacity 0.15s",
               }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "#86efac";
-                (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 0 40px rgba(74,222,128,0.5)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "#4ade80";
-                (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 0 28px rgba(74,222,128,0.35)";
-              }}
+              onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.opacity = "0.85"}
+              onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.opacity = "1"}
             >
-              Buy $CASHBACK ↗
+              Buy $CASHBACK
             </a>
             <a
               href="#leaderboard"
               style={{
                 background: "transparent",
-                color: "#fff",
-                fontWeight: 600,
-                fontSize: 15,
-                padding: "14px 30px",
-                borderRadius: 10,
+                color: "var(--text)",
+                fontWeight: 500,
+                fontSize: 14,
+                padding: "10px 20px",
+                borderRadius: "var(--radius-sm)",
                 textDecoration: "none",
-                fontFamily: "var(--font-display)",
-                border: "1px solid #1e2040",
-                display: "inline-block",
+                fontFamily: "var(--font-sans)",
+                border: "1px solid var(--border)",
                 transition: "border-color 0.15s, background 0.15s",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = "#4ade80";
-                (e.currentTarget as HTMLElement).style.background = "rgba(74,222,128,0.06)";
+                (e.currentTarget as HTMLElement).style.borderColor = "var(--text-muted)";
+                (e.currentTarget as HTMLElement).style.background = "var(--bg-hover)";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = "#1e2040";
+                (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
                 (e.currentTarget as HTMLElement).style.background = "transparent";
               }}
             >
@@ -169,25 +125,31 @@ export default function Hero() {
             </a>
           </div>
 
-          {/* Inline stats */}
-          <div style={{
-            display: "flex",
-            gap: 32,
-            marginTop: 52,
-            paddingTop: 32,
-            borderTop: "1px solid #1e2040",
-            flexWrap: "wrap",
-          }}>
+          {/* Stats row */}
+          <div style={{ display: "flex", gap: 0, borderTop: "1px solid var(--border-muted)" }}>
             {[
               { value: "1,247",    label: "Holders" },
               { value: "◎ 142.8", label: "SOL Distributed" },
-              { value: "14 Days",  label: "Longest Hold" },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 24, color: "#4ade80", letterSpacing: "-0.02em", lineHeight: 1, marginBottom: 6 }}>
+              { value: "14d 6h",   label: "Longest Hold" },
+            ].map((stat, i) => (
+              <div key={stat.label} style={{
+                flex: 1,
+                paddingTop: 20,
+                paddingRight: 24,
+                paddingLeft: i === 0 ? 0 : 24,
+                borderLeft: i > 0 ? "1px solid var(--border-muted)" : "none",
+              }}>
+                <div style={{
+                  fontFamily: "var(--font-mono)",
+                  fontWeight: 500,
+                  fontSize: 20,
+                  color: "var(--text)",
+                  letterSpacing: "-0.02em",
+                  marginBottom: 4,
+                }}>
                   {stat.value}
                 </div>
-                <div style={{ fontFamily: "var(--font-body)", fontSize: 12, color: "#8888aa" }}>
+                <div style={{ fontFamily: "var(--font-sans)", fontSize: 12, color: "var(--text-dim)" }}>
                   {stat.label}
                 </div>
               </div>
@@ -195,88 +157,114 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* RIGHT — Floating logo */}
+        {/* RIGHT — Token card */}
         <div style={{
-          flex: "1 1 360px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          position: "relative",
+          background: "var(--bg-card)",
+          border: "1px solid var(--border)",
+          borderRadius: "var(--radius-lg)",
+          overflow: "hidden",
         }}>
-          {/* Outer glow ring */}
+          {/* Card header */}
           <div style={{
-            position: "absolute",
-            width: 420,
-            height: 420,
-            borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(74,222,128,0.12) 0%, transparent 70%)",
-            pointerEvents: "none",
-          }} />
+            padding: "16px 20px",
+            borderBottom: "1px solid var(--border-muted)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <div style={{
+                width: 32,
+                height: 32,
+                background: "var(--green-dim)",
+                border: "1px solid var(--green-border)",
+                borderRadius: "50%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontFamily: "var(--font-mono)",
+                fontWeight: 700,
+                fontSize: 13,
+                color: "var(--green)",
+              }}>$</div>
+              <div>
+                <div style={{ fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: 14, color: "var(--text)" }}>$CASHBACK</div>
+                <div style={{ fontFamily: "var(--font-sans)", fontSize: 11, color: "var(--text-dim)" }}>Cashback Holders</div>
+              </div>
+            </div>
+            <span style={{
+              fontFamily: "var(--font-sans)",
+              fontSize: 11,
+              fontWeight: 500,
+              color: "var(--green)",
+              background: "var(--green-dim)",
+              border: "1px solid var(--green-border)",
+              padding: "2px 8px",
+              borderRadius: 100,
+            }}>
+              +14.2%
+            </span>
+          </div>
 
-          {/* Rotating dashed ring */}
+          {/* Price */}
+          <div style={{ padding: "20px 20px 0" }}>
+            <div style={{ fontFamily: "var(--font-sans)", fontSize: 11, color: "var(--text-dim)", marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.06em" }}>Price</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontWeight: 600, fontSize: 28, color: "var(--text)", letterSpacing: "-0.02em" }}>$0.00042069</div>
+          </div>
+
+          {/* Grid of stats */}
           <div style={{
-            position: "absolute",
-            width: 380,
-            height: 380,
-            borderRadius: "50%",
-            border: "1px dashed rgba(74,222,128,0.15)",
-            animation: "orbit-spin 20s linear infinite",
-            pointerEvents: "none",
-          }} />
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 0,
+            padding: "20px",
+          }}>
+            {[
+              { label: "Market Cap",   value: "$420.7K" },
+              { label: "24h Volume",   value: "$88.4K" },
+              { label: "Total Supply", value: "1B" },
+              { label: "Holders",      value: "1,247" },
+              { label: "Creator Fees", value: "◎ 142.8" },
+              { label: "Fee Rate",     value: "0.5%" },
+            ].map((item, i) => (
+              <div key={item.label} style={{
+                padding: "12px 0",
+                borderTop: "1px solid var(--border-muted)",
+                paddingRight: i % 2 === 0 ? 16 : 0,
+                paddingLeft: i % 2 === 1 ? 16 : 0,
+                borderLeft: i % 2 === 1 ? "1px solid var(--border-muted)" : "none",
+              }}>
+                <div style={{ fontFamily: "var(--font-sans)", fontSize: 11, color: "var(--text-dim)", marginBottom: 4 }}>{item.label}</div>
+                <div style={{ fontFamily: "var(--font-mono)", fontSize: 13, fontWeight: 500, color: "var(--text)" }}>{item.value}</div>
+              </div>
+            ))}
+          </div>
 
-          {/* Inner ring */}
-          <div style={{
-            position: "absolute",
-            width: 310,
-            height: 310,
-            borderRadius: "50%",
-            border: "1px solid rgba(74,222,128,0.08)",
-            pointerEvents: "none",
-          }} />
-
-          {/* The logo image — floating */}
-          <div className="float-logo" style={{ position: "relative", zIndex: 2 }}>
-            <img
-              src="/logo.png"
-              alt="$Cashback Holders"
+          {/* CTA */}
+          <div style={{ padding: "0 20px 20px" }}>
+            <a
+              href="https://pump.fun"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
-                width: "clamp(280px, 30vw, 420px)",
-                height: "auto",
-                objectFit: "contain",
-                filter: "drop-shadow(0 0 40px rgba(74,222,128,0.35)) drop-shadow(0 20px 60px rgba(0,0,0,0.5))",
+                display: "block",
+                width: "100%",
+                textAlign: "center",
+                background: "var(--green)",
+                color: "#0e1014",
+                fontFamily: "var(--font-sans)",
+                fontWeight: 600,
+                fontSize: 14,
+                padding: "11px",
+                borderRadius: "var(--radius-sm)",
+                textDecoration: "none",
+                transition: "opacity 0.15s",
               }}
-            />
-          </div>
-
-          {/* Floating stat badges */}
-          <div style={{
-            position: "absolute",
-            top: "8%",
-            right: "2%",
-            background: "var(--bg-card)",
-            border: "1px solid rgba(74,222,128,0.25)",
-            borderRadius: 12,
-            padding: "10px 16px",
-            boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
-            animation: "float-2 6s ease-in-out infinite",
-          }}>
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 13, fontWeight: 700, color: "#4ade80" }}>+14.2%</div>
-            <div style={{ fontFamily: "var(--font-body)", fontSize: 10, color: "#8888aa", marginTop: 2 }}>24h Change</div>
-          </div>
-
-          <div style={{
-            position: "absolute",
-            bottom: "10%",
-            left: "4%",
-            background: "var(--bg-card)",
-            border: "1px solid rgba(74,222,128,0.25)",
-            borderRadius: 12,
-            padding: "10px 16px",
-            boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
-            animation: "float-4 7s ease-in-out infinite 1s",
-          }}>
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: 13, fontWeight: 700, color: "#fbbf24" }}>◎ 142.8</div>
-            <div style={{ fontFamily: "var(--font-body)", fontSize: 10, color: "#8888aa", marginTop: 2 }}>SOL Earned</div>
+              onMouseEnter={(e) => (e.currentTarget as HTMLElement).style.opacity = "0.85"}
+              onMouseLeave={(e) => (e.currentTarget as HTMLElement).style.opacity = "1"}
+            >
+              Buy on Pump.fun →
+            </a>
           </div>
         </div>
 

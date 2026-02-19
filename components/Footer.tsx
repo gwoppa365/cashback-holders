@@ -2,76 +2,68 @@
 
 export default function Footer() {
   return (
-    <footer style={{ background: "var(--bg-card)", borderTop: "1px solid var(--border)", padding: "56px 24px 40px" }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-        {/* Top row */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: 32, marginBottom: 48 }}>
-          {/* Logo + tagline */}
+    <footer style={{ background: "var(--bg-card)", borderTop: "1px solid var(--border)", padding: "48px 20px 32px" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr auto auto", gap: 48, marginBottom: 40, flexWrap: "wrap" }}>
+
+          {/* Brand */}
           <div>
-            <div style={{ marginBottom: 12 }}>
-              <img
-                src="/logo.png"
-                alt="Cashback Holders"
-                style={{ height: 52, width: "auto", objectFit: "contain" }}
-              />
+            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
+              <span style={{
+                display: "inline-flex", alignItems: "center", justifyContent: "center",
+                width: 24, height: 24, background: "var(--green)", borderRadius: 5,
+                fontFamily: "var(--font-mono)", fontWeight: 700, fontSize: 12, color: "#0e1014",
+              }}>$</span>
+              <span style={{ fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: 14, color: "var(--text)", letterSpacing: "-0.02em" }}>
+                cashback<span style={{ color: "var(--green)" }}>holders</span>
+              </span>
             </div>
-            <p style={{ fontFamily: "var(--font-body)", fontSize: 14, color: "var(--text-muted)", fontWeight: 400, maxWidth: 240, lineHeight: 1.6 }}>
-              The Solana token that rewards holders. Hold $CASHBACK, earn automatically.
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: 13, color: "var(--text-dim)", lineHeight: 1.65, maxWidth: 260 }}>
+              A Solana token that distributes trading fees to long-term holders. Built on Pump.fun.
             </p>
           </div>
 
-          {/* Links */}
-          <div style={{ display: "flex", gap: 48, flexWrap: "wrap" }}>
-            <div>
-              <p style={{ fontFamily: "var(--font-body)", fontSize: 11, fontWeight: 600, color: "var(--text-dim)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 16 }}>Product</p>
-              {["Leaderboard", "Fee Tracker", "How It Works"].map((link) => (
-                <a key={link} href={`#${link.toLowerCase().replace(/\s+/g, "-")}`} style={{ display: "block", fontFamily: "var(--font-body)", fontSize: 14, color: "var(--text-muted)", textDecoration: "none", marginBottom: 10, transition: "color 0.15s" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-muted)")}>
-                  {link}
-                </a>
-              ))}
-            </div>
-            <div>
-              <p style={{ fontFamily: "var(--font-body)", fontSize: 11, fontWeight: 600, color: "var(--text-dim)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 16 }}>Community</p>
-              {[
-                { label: "Pump.fun",    href: "https://pump.fun" },
-                { label: "Telegram",    href: "https://t.me" },
-                { label: "X / Twitter", href: "https://twitter.com" },
-                { label: "Solscan",     href: "https://solscan.io" },
-              ].map(({ label, href }) => (
-                <a key={label} href={href} target="_blank" rel="noopener noreferrer"
-                  style={{ display: "block", fontFamily: "var(--font-body)", fontSize: 14, color: "var(--text-muted)", textDecoration: "none", marginBottom: 10, transition: "color 0.15s" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-muted)")}>
-                  {label}
-                </a>
-              ))}
-            </div>
+          {/* Product links */}
+          <div>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: 11, fontWeight: 600, color: "var(--text-dim)", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 14 }}>Product</p>
+            {["Leaderboard", "Fee Tracker", "How It Works"].map((link) => (
+              <a key={link} href={`#${link.toLowerCase().replace(/\s+/g, "-")}`}
+                style={{ display: "block", fontFamily: "var(--font-sans)", fontSize: 13, color: "var(--text-muted)", textDecoration: "none", marginBottom: 9, transition: "color 0.15s" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-muted)")}>
+                {link}
+              </a>
+            ))}
           </div>
-        </div>
 
-        {/* Divider */}
-        <div style={{ height: 1, background: "var(--border)", marginBottom: 28 }} />
-
-        {/* Bottom row */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
-          <p style={{ fontFamily: "var(--font-body)", fontSize: 13, color: "var(--text-dim)" }}>
-            © {new Date().getFullYear()} Cashback Holders. Built on Solana.
-          </p>
-          <div style={{ display: "flex", gap: 20 }}>
+          {/* Community links */}
+          <div>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: 11, fontWeight: 600, color: "var(--text-dim)", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: 14 }}>Community</p>
             {[
-              { label: "X", href: "https://twitter.com" },
-              { label: "TG", href: "https://t.me" },
+              { label: "Pump.fun",    href: "https://pump.fun" },
+              { label: "Telegram",    href: "https://t.me" },
+              { label: "X / Twitter", href: "https://twitter.com" },
+              { label: "Solscan",     href: "https://solscan.io" },
             ].map(({ label, href }) => (
               <a key={label} href={href} target="_blank" rel="noopener noreferrer"
-                style={{ fontFamily: "var(--font-body)", fontSize: 13, color: "var(--text-dim)", textDecoration: "none", transition: "color 0.15s" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-dim)")}>
+                style={{ display: "block", fontFamily: "var(--font-sans)", fontSize: 13, color: "var(--text-muted)", textDecoration: "none", marginBottom: 9, transition: "color 0.15s" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-muted)")}>
                 {label}
               </a>
             ))}
           </div>
+        </div>
+
+        <div style={{ height: 1, background: "var(--border-muted)", marginBottom: 24 }} />
+
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: 12, color: "var(--text-dim)" }}>
+            © {new Date().getFullYear()} Cashback Holders. Built on Solana.
+          </p>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: 12, color: "var(--text-dim)" }}>
+            Not financial advice. DYOR.
+          </p>
         </div>
       </div>
     </footer>
