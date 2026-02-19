@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* Pump.fun dark palette */
+  --bg:           #0a0a12;
+  --bg-card:      #0f1020;
+  --bg-card-alt:  #12132a;
+  --bg-hover:     #161728;
+  --border:       #1e2040;
+  --border-light: #252850;
+
+  /* Text */
+  --text:         #ffffff;
+  --text-muted:   #8888aa;
+  --text-dim:     #4a4a6a;
+
+  /* Accent — pump.fun green */
+  --green:        #4ade80;
+  --green-dark:   #22c55e;
+  --green-glow:   rgba(74, 222, 128, 0.12);
+  --green-dim:    rgba(74, 222, 128, 0.08);
+
+  /* Yellow accent */
+  --yellow:       #fbbf24;
+
+  /* Font stacks */
+  --font-display: 'Space Grotesk', Arial, sans-serif;
+  --font-body:    'Space Grotesk', Arial, sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  /* Shadows */
+  --shadow-green: 0 0 20px rgba(74, 222, 128, 0.15);
+  --shadow-card:  0 4px 24px rgba(0,0,0,0.4);
+
+  /* Radius */
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Dot grid — dark version */
+.pattern-dots {
+  background-image: radial-gradient(circle, rgba(74,222,128,0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Grid pattern — dark */
+.pattern-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 0),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 0);
+  background-size: 40px 40px;
+}
+
+/* Marquee */
+@keyframes marquee {
+  0%   { transform: translate(0); }
+  100% { transform: translate(-50%); }
+}
+.animate-marquee { animation: marquee 40s linear infinite; }
+
+/* Float animations */
+@keyframes float-1 { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-18px) rotate(4deg)} }
+@keyframes float-2 { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-14px) rotate(-5deg)} }
+@keyframes float-3 { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-22px) rotate(3deg)} }
+@keyframes float-4 { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-11px) rotate(-7deg)} }
+@keyframes float-5 { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-16px) rotate(5deg)} }
+.float-1 { animation: float-1 6s ease-in-out infinite; }
+.float-2 { animation: float-2 7s ease-in-out infinite 0.5s; }
+.float-3 { animation: float-3 5.5s ease-in-out infinite 1s; }
+.float-4 { animation: float-4 8s ease-in-out infinite 1.5s; }
+.float-5 { animation: float-5 6.5s ease-in-out infinite 2s; }
+
+/* Ping for live dot */
+@keyframes ping { 75%,100%{transform:scale(2);opacity:0} }
+.animate-ping { animation: ping 1.5s cubic-bezier(0,0,0.2,1) infinite; }
+
+/* Pulse */
+@keyframes pulse { 50% { opacity: 0.5; } }
+.animate-pulse { animation: pulse 2s cubic-bezier(0.4,0,0.6,1) infinite; }
+
+/* Modal fade-in */
+@keyframes modal-in {
+  from { opacity: 0; transform: scale(0.95) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal-in { animation: modal-in 0.25s ease forwards; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
