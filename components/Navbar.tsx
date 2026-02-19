@@ -23,12 +23,7 @@ export default function Navbar() {
 
         {/* Logo */}
         <a href="#" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 10 }}>
-          <div style={{
-            width: 22, height: 22, borderRadius: 4,
-            background: "var(--green)", display: "flex",
-            alignItems: "center", justifyContent: "center",
-            fontFamily: "var(--font-mono)", fontWeight: 600, fontSize: 11, color: "#080b0f",
-          }}>$</div>
+          <img src="/logo.png" alt="Cashback Holders" style={{ width: 32, height: 32, borderRadius: 8, objectFit: "cover" }} />
           <span style={{ fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: 14, color: "var(--text)", letterSpacing: "-0.02em" }}>
             Cashback<span style={{ color: "var(--green)" }}>Holders</span>
           </span>

@@ -10,11 +10,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
-              <div style={{
-                width: 22, height: 22, borderRadius: 4, background: "var(--green)", flexShrink: 0,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontFamily: "var(--font-mono)", fontWeight: 600, fontSize: 11, color: "#080b0f",
-              }}>$</div>
+              <img src="/logo.png" alt="Cashback Holders" style={{ width: 32, height: 32, borderRadius: 8, objectFit: "cover", flexShrink: 0 }} />
               <span style={{ fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: 14, color: "var(--text)", letterSpacing: "-0.02em" }}>
                 CashbackHolders
               </span>
