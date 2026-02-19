@@ -67,7 +67,7 @@ export default function Hero() {
               maxWidth: 500,
               marginBottom: 40,
             }}>
-              Every trade on Pump.fun generates 0.5% in SOL fees. Those fees are distributed automatically to $CASHBACK holders — weighted by hold duration and on-chain rank. No staking. No lock-up.
+              Pump.fun creator fees are collected in SOL on every buy and sell. Those fees are distributed automatically to $CASHBACK holders — the longer you hold, the greater your allocation. No staking. No lock-up.
             </p>
 
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 64 }}>
