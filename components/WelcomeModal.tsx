@@ -6,11 +6,11 @@ export default function WelcomeModal() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (!sessionStorage.getItem("cbintel-seen")) setOpen(true);
+    if (!sessionStorage.getItem("whalespy-seen")) setOpen(true);
   }, []);
 
   function dismiss() {
-    sessionStorage.setItem("cbintel-seen", "1");
+    sessionStorage.setItem("whalespy-seen", "1");
     setOpen(false);
   }
 
@@ -47,14 +47,14 @@ export default function WelcomeModal() {
             background: "var(--blue-dim)", border: "1px solid var(--blue-border)",
             borderRadius: 100, padding: "5px 14px", marginBottom: 18,
           }}>
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--blue-bright)", letterSpacing: "0.1em" }}>CB INTEL · WHALE TRACKER</span>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--blue-bright)", letterSpacing: "0.1em" }}>WHALESPY · SOLANA INTELLIGENCE</span>
           </div>
           <h2 style={{ fontFamily: "var(--font-sans)", fontWeight: 800, fontSize: 22, color: "var(--text)", letterSpacing: "-0.03em", marginBottom: 12 }}>
             See every whale move.<br />
             <span style={{ background: "linear-gradient(135deg, #38bdf8, #818cf8)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Before it pumps.</span>
           </h2>
           <p style={{ fontFamily: "var(--font-sans)", fontSize: 14, color: "var(--text-muted)", lineHeight: 1.7 }}>
-            CB Intel tracks real-time swap activity from top Solana wallets. Hold $CASHBACK to unlock pro access.
+            WhaleSpy tracks real-time swap activity from top Solana wallets. Hold $SPY to unlock pro access.
           </p>
         </div>
 
@@ -62,7 +62,7 @@ export default function WelcomeModal() {
           {[
             { icon: "👁", text: "Watch whale wallets buy and sell in real time" },
             { icon: "🔍", text: "Track any Solana wallet's full swap history" },
-            { icon: "🔓", text: "Hold 1M $CASHBACK to unlock Pro — unlimited access" },
+            { icon: "🔓", text: "Hold 1M $SPY to unlock Pro — unlimited access" },
           ].map(s => (
             <div key={s.text} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
               <span style={{ fontSize: 16, flexShrink: 0 }}>{s.icon}</span>

@@ -61,7 +61,7 @@ export default function WalletTracker() {
             Track any Solana wallet
           </h2>
           <p style={{ fontFamily: "var(--font-sans)", fontSize: 14, color: "var(--text-muted)", maxWidth: 460, margin: "0 auto", lineHeight: 1.7 }}>
-            Paste any wallet address to see their recent swap history. Enter your own wallet to check your $CASHBACK pro status.
+            Paste any wallet address to see their recent swap history. Enter your own wallet to check your $SPY pro status.
           </p>
         </div>
 
@@ -111,8 +111,8 @@ export default function WalletTracker() {
                 </div>
                 <div style={{ fontFamily: "var(--font-sans)", fontSize: 12, color: "var(--text-muted)" }}>
                   {balance > 0
-                    ? `Holds ${balance.toLocaleString()} $CASHBACK`
-                    : "No $CASHBACK detected in this wallet"}
+                    ? `Holds ${balance.toLocaleString()} $SPY`
+                    : "No $SPY detected in this wallet"}
                 </div>
               </div>
             </div>

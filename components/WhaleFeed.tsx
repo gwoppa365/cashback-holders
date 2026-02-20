@@ -54,7 +54,7 @@ export default function WhaleFeed() {
               Real-time Activity
             </h2>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 14, color: "var(--text-muted)", maxWidth: 440, lineHeight: 1.65 }}>
-              Live swap activity from top $CASHBACK wallet holders. Updates every 20 seconds.
+              Live swap activity from top Solana whale wallets. Updates every 20 seconds.
             </p>
           </div>
 

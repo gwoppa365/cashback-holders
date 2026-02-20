@@ -36,10 +36,10 @@ export default function ProGate() {
             <span style={{ fontFamily: "var(--font-mono)", fontSize: 9, color: "var(--blue-bright)", letterSpacing: "0.1em" }}>PRO ACCESS</span>
           </div>
           <h2 style={{ fontFamily: "var(--font-sans)", fontWeight: 800, fontSize: "clamp(24px,4vw,42px)", color: "var(--text)", letterSpacing: "-0.04em", marginBottom: 14 }}>
-            Unlock with $CASHBACK
+            Unlock with $SPY
           </h2>
           <p style={{ fontFamily: "var(--font-sans)", fontSize: 15, color: "var(--text-muted)", maxWidth: 440, margin: "0 auto", lineHeight: 1.7 }}>
-            Hold 1,000,000 $CASHBACK tokens to unlock pro features. The more you hold, the more you access.
+            Hold 1,000,000 $SPY tokens to unlock pro features. The more you hold, the more you access.
           </p>
         </div>
 
@@ -98,7 +98,7 @@ export default function ProGate() {
                 }}>RECOMMENDED</span>
               </div>
               <div style={{ fontFamily: "var(--font-mono)", fontWeight: 800, fontSize: 36, color: "var(--text)", letterSpacing: "-0.04em", marginBottom: 4 }}>1M</div>
-              <div style={{ fontFamily: "var(--font-sans)", fontSize: 13, color: "var(--text-muted)" }}>$CASHBACK tokens required</div>
+              <div style={{ fontFamily: "var(--font-sans)", fontSize: 13, color: "var(--text-muted)" }}>$SPY tokens required</div>
             </div>
 
             <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 28 }}>
@@ -116,7 +116,7 @@ export default function ProGate() {
               color: "#fff", background: "var(--blue)",
               textDecoration: "none", padding: "13px",
               borderRadius: "var(--radius-sm)",
-            }}>Buy $CASHBACK on Pump.fun →</a>
+            }}>Buy $SPY on Pump.fun →</a>
           </div>
         </div>
 
@@ -129,7 +129,7 @@ export default function ProGate() {
           <span style={{ fontFamily: "var(--font-sans)", fontSize: 13, color: "var(--text-muted)" }}>
             To verify pro status, enter your wallet address in the{" "}
             <a href="#tracker" style={{ color: "var(--blue)", textDecoration: "none" }}>Wallet Tracker ↑</a>
-            {" "}— your $CASHBACK balance is checked live from on-chain data.
+            {" "}— your $SPY balance is checked live from on-chain data.
           </span>
         </div>
       </div>

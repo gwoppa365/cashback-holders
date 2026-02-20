@@ -11,12 +11,12 @@ export default function StatsMarquee() {
   const changePos = change !== null && change >= 0;
 
   const items = [
-    { label: "Token",       value: "$CASHBACK",                                          accent: false },
+    { label: "Token",       value: "$SPY",                                               accent: false },
     { label: "Holders",     value: data?.holders ? data.holders.toLocaleString() : "—", accent: false },
     { label: "Market Cap",  value: data?.marketCap ? `$${(data.marketCap/1000).toFixed(1)}K` : "—", accent: false },
     { label: "24h Volume",  value: data?.volume24h ? `$${(data.volume24h/1000).toFixed(1)}K` : "—", accent: false },
     { label: "24h Change",  value: change !== null ? `${changePos?"+":""}${change.toFixed(2)}%` : "—", accent: true, isChange: true, changePos },
-    { label: "Pro Access",  value: "1M CBCK",                                            accent: true },
+    { label: "Pro Access",  value: "1M $SPY",                                            accent: true },
     { label: "Chain",       value: "Solana",                                             accent: false },
     { label: "Transactions",value: data?.txns24h ? data.txns24h.toLocaleString() : "—", accent: false },
   ];

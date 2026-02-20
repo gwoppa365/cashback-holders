@@ -172,7 +172,7 @@ export default function Leaderboard() {
               : "Registry activates on launch"}
           </p>
           {isLive && (
-            <a href={SOLSCAN_URL} target="_blank" rel="noopener noreferrer"
+            <a href={SOLSCAN_URL ?? undefined} target="_blank" rel="noopener noreferrer"
               style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--text-dim)", textDecoration: "none", transition: "color 0.15s" }}
               onMouseEnter={e => (e.currentTarget.style.color = "var(--text-muted)")}
               onMouseLeave={e => (e.currentTarget.style.color = "var(--text-dim)")}

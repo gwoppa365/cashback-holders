@@ -2,9 +2,9 @@
 import { PUMP_FUN_URL } from "@/lib/constants";
 
 const STEPS = [
-  { n: "01", icon: "👁", title: "Watch the feed", desc: "The live feed pulls real-time swap data from top $CASHBACK holder wallets — showing exactly what tokens they're buying and selling across Pump.fun, Raydium, and Jupiter." },
+  { n: "01", icon: "👁", title: "Watch the feed", desc: "The live feed pulls real-time swap data from top $SPY holder wallets — showing exactly what tokens they're buying and selling across Pump.fun, Raydium, and Jupiter." },
   { n: "02", icon: "🔍", title: "Track any wallet", desc: "Paste any Solana wallet address into the tracker to see their full recent swap history. Useful for following whales, researching wallets, or checking your own activity." },
-  { n: "03", icon: "🔓", title: "Unlock pro with $CASHBACK", desc: "Hold 1,000,000 $CASHBACK tokens for pro access. Your balance is verified live from on-chain data — no login, no signup, just hold and access." },
+  { n: "03", icon: "🔓", title: "Unlock pro with $SPY", desc: "Hold 1,000,000 $SPY tokens for pro access. Your balance is verified live from on-chain data — no login, no signup, just hold and access." },
 ];
 
 export default function HowItWorks() {
@@ -24,7 +24,7 @@ export default function HowItWorks() {
           </div>
           <h2 style={{ fontFamily: "var(--font-sans)", fontWeight: 800, fontSize: "clamp(22px,3vw,34px)", color: "var(--text)", letterSpacing: "-0.04em", marginBottom: 10 }}>Simple as it gets</h2>
           <p style={{ fontFamily: "var(--font-sans)", fontSize: 14, color: "var(--text-muted)", maxWidth: 460, lineHeight: 1.7 }}>
-            No wallet connect required. Paste a wallet, see what it's doing. Hold $CASHBACK for full access.
+            No wallet connect required. Paste a wallet, see what it's doing. Hold $SPY for full access.
           </p>
         </div>
 
@@ -56,7 +56,7 @@ export default function HowItWorks() {
         }}>
           <div>
             <h3 style={{ fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: 18, color: "var(--text)", letterSpacing: "-0.03em", marginBottom: 6 }}>Ready to track smarter?</h3>
-            <p style={{ fontFamily: "var(--font-sans)", fontSize: 14, color: "var(--text-muted)" }}>Buy $CASHBACK on Pump.fun to unlock pro access and stay ahead of the market.</p>
+            <p style={{ fontFamily: "var(--font-sans)", fontSize: 14, color: "var(--text-muted)" }}>Buy $SPY on Pump.fun to unlock pro access and stay ahead of the market.</p>
           </div>
           <div style={{ display: "flex", gap: 10 }}>
             <a href="#feed" className="btn-ghost" style={{
@@ -68,7 +68,7 @@ export default function HowItWorks() {
               fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: 14,
               color: "#fff", background: "var(--blue)",
               textDecoration: "none", padding: "12px 22px", borderRadius: "var(--radius-sm)", display: "inline-block",
-            }}>Buy $CASHBACK →</a>
+            }}>Buy $SPY →</a>
           </div>
         </div>
       </div>
