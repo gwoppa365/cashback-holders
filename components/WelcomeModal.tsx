@@ -1,14 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
+import { PUMP_FUN_URL } from "@/lib/constants";
 
 export default function WelcomeModal() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const seen = sessionStorage.getItem("cashback-modal-seen");
-    if (!seen) {
-      setOpen(true);
-    }
+    if (!seen) setOpen(true);
   }, []);
 
   function dismiss() {
@@ -19,191 +18,95 @@ export default function WelcomeModal() {
   if (!open) return null;
 
   return (
-    /* Backdrop */
-    <div
-      onClick={dismiss}
-      style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: 9999,
-        background: "rgba(5, 5, 15, 0.85)",
-        backdropFilter: "blur(6px)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "20px",
-      }}
-    >
-      {/* Modal card */}
-      <div
-        className="modal-in"
-        onClick={(e) => e.stopPropagation()}
-        style={{
-          background: "#0d0e1f",
-          border: "1px solid #2a2d50",
-          borderRadius: 16,
-          padding: "40px 36px",
-          maxWidth: 560,
-          width: "100%",
-          position: "relative",
-          boxShadow: "0 24px 80px rgba(0,0,0,0.6), 0 0 0 1px #1a1c35",
+    <div onClick={dismiss} style={{
+      position: "fixed", inset: 0, zIndex: 9999,
+      background: "rgba(4,6,10,0.9)",
+      backdropFilter: "blur(10px)",
+      display: "flex", alignItems: "center", justifyContent: "center",
+      padding: "20px",
+    }}>
+      <div className="modal-in" onClick={e => e.stopPropagation()} style={{
+        background: "var(--bg-card)",
+        border: "1px solid var(--border)",
+        borderRadius: 20,
+        padding: "44px 40px",
+        maxWidth: 520, width: "100%",
+        position: "relative",
+        boxShadow: "0 32px 80px rgba(0,0,0,0.7), var(--green-glow)",
+      }}>
+
+        {/* Close */}
+        <button onClick={dismiss} style={{
+          position: "absolute", top: 16, right: 16,
+          background: "var(--bg-elevated)", border: "1px solid var(--border)",
+          color: "var(--text-dim)", fontSize: 16, cursor: "pointer",
+          width: 28, height: 28, borderRadius: "50%",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          transition: "all 0.15s",
         }}
-      >
-        {/* Close button */}
-        <button
-          onClick={dismiss}
-          style={{
-            position: "absolute",
-            top: 16,
-            right: 16,
-            background: "none",
-            border: "none",
-            color: "#4a4a6a",
-            fontSize: 20,
-            cursor: "pointer",
-            lineHeight: 1,
-            padding: 4,
-            transition: "color 0.15s",
-          }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-          onMouseLeave={(e) => (e.currentTarget.style.color = "#4a4a6a")}
-        >
-          ×
-        </button>
+        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "var(--text)"; (e.currentTarget as HTMLElement).style.borderColor = "var(--text-dim)"; }}
+        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "var(--text-dim)"; (e.currentTarget as HTMLElement).style.borderColor = "var(--border)"; }}
+        >×</button>
 
-        {/* Title */}
-        <h2 style={{
-          fontFamily: "var(--font-sans)",
-          fontWeight: 700,
-          fontSize: 22,
-          color: "#fff",
-          textAlign: "center",
-          marginBottom: 20,
-          letterSpacing: "-0.02em",
-        }}>
-          How it works
-        </h2>
+        {/* Logo / badge */}
+        <div style={{ textAlign: "center", marginBottom: 28 }}>
+          <div style={{
+            display: "inline-flex", alignItems: "center", gap: 6,
+            background: "var(--green-dim)", border: "1px solid var(--green-border)",
+            borderRadius: 100, padding: "5px 14px", marginBottom: 18,
+          }}>
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--green-bright)", display: "inline-block" }} />
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--green-bright)", letterSpacing: "0.1em" }}>$CASHBACK PROTOCOL</span>
+          </div>
 
-        {/* Intro paragraph */}
-        <p style={{
-          fontFamily: "var(--font-sans)",
-          fontSize: 15,
-          color: "#c0c0d8",
-          textAlign: "center",
-          lineHeight: 1.65,
-          marginBottom: 24,
-        }}>
-          This is not Pump.fun's trader fee split. <span style={{ color: "#4ade80", fontWeight: 600 }}>$CASHBACK</span> runs its own holder rewards protocol — creator fees from every trade flow directly to holders, weighted by how long you hold. Hold longer, earn a bigger share.
-        </p>
+          <h2 style={{
+            fontFamily: "var(--font-sans)", fontWeight: 800, fontSize: 24,
+            color: "var(--text)", letterSpacing: "-0.03em", marginBottom: 12,
+          }}>
+            Trade. Hold. <span className="green-text">Earn.</span>
+          </h2>
+          <p style={{ fontFamily: "var(--font-sans)", fontSize: 14, color: "var(--text-muted)", lineHeight: 1.7 }}>
+            $CASHBACK distributes 100% of creator fees to holders — not traders. The longer you hold, the bigger your share of every trade.
+          </p>
+        </div>
 
         {/* Steps */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 28 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 28 }}>
           {[
-            {
-              bold: "Step 1:",
-              text: <>acquire or hold{" "}<span style={{ color: "#4ade80", fontWeight: 600 }}>$CASHBACK</span>{" "}in your wallet</>,
-            },
-            {
-              bold: "Step 2:",
-              text: <>hold{" "}<span style={{ color: "#4ade80", fontWeight: 600 }}>$CASHBACK</span>{" "}longer to increase your allocation and leaderboard position</>,
-            },
-            {
-              bold: "Step 3:",
-              text: "receive distributed fees based on your hold duration and ranking",
-            },
-          ].map((step, i) => (
-            <p key={i} style={{
-              fontFamily: "var(--font-sans)",
-              fontSize: 14,
-              color: "#c0c0d8",
-              textAlign: "center",
-              lineHeight: 1.6,
-              margin: 0,
-            }}>
-              <span style={{ fontWeight: 700, color: "#fff" }}>{step.bold}</span>{" "}
-              {step.text}
-            </p>
+            { step: "1", text: <>Buy <span style={{ color: "var(--green-bright)", fontWeight: 700 }}>$CASHBACK</span> on Pump.fun and your hold timer starts automatically</> },
+            { step: "2", text: "Every buy and sell generates 0.5% SOL fees — added to the distribution pool" },
+            { step: "3", text: "Fees are sent to your wallet, weighted by how long you've held — no staking or claiming needed" },
+          ].map(s => (
+            <div key={s.step} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
+              <div style={{
+                width: 24, height: 24, borderRadius: "50%", flexShrink: 0,
+                background: "var(--green-dim)", border: "1px solid var(--green-border)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontFamily: "var(--font-mono)", fontWeight: 700, fontSize: 11, color: "var(--green-bright)",
+                marginTop: 1,
+              }}>{s.step}</div>
+              <p style={{ fontFamily: "var(--font-sans)", fontSize: 13, color: "var(--text-muted)", lineHeight: 1.65 }}>{s.text}</p>
+            </div>
           ))}
         </div>
 
-        {/* Disclaimer */}
-        <p style={{
-          fontFamily: "var(--font-sans)",
-          fontSize: 13,
-          color: "#8888aa",
-          textAlign: "center",
-          lineHeight: 1.6,
-          marginBottom: 24,
-        }}>
-          By clicking this button, you agree to the{" "}
-          <span style={{ fontWeight: 700, color: "#c0c0d8" }}>terms and conditions</span>
-          {" "}and certify that you are over 18 years old
-        </p>
-
-        {/* CTA button */}
-        <button
+        {/* CTA */}
+        <a href={PUMP_FUN_URL} target="_blank" rel="noopener noreferrer"
+          className="btn-glow"
           onClick={dismiss}
           style={{
-            width: "100%",
-            background: "#86efac",
-            color: "#0a0a12",
-            fontFamily: "var(--font-sans)",
-            fontWeight: 700,
-            fontSize: 16,
-            padding: "18px 24px",
-            borderRadius: 10,
-            border: "none",
-            cursor: "pointer",
-            letterSpacing: "-0.01em",
-            transition: "background 0.15s, box-shadow 0.15s",
-            boxShadow: "0 0 24px rgba(134,239,172,0.25)",
-            marginBottom: 20,
+            display: "block", textAlign: "center", width: "100%",
+            fontFamily: "var(--font-sans)", fontWeight: 800, fontSize: 15,
+            color: "#040607", background: "var(--green-bright)",
+            textDecoration: "none", padding: "16px 24px",
+            borderRadius: 10, boxSizing: "border-box", marginBottom: 20,
           }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.background = "#4ade80";
-            (e.currentTarget as HTMLElement).style.boxShadow = "0 0 32px rgba(74,222,128,0.4)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.background = "#86efac";
-            (e.currentTarget as HTMLElement).style.boxShadow = "0 0 24px rgba(134,239,172,0.25)";
-          }}
-        >
-          I'm ready to start earning
-        </button>
+        >I'm ready to start earning →</a>
 
-        {/* Footer links */}
-        <div style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: 0,
-          alignItems: "center",
-        }}>
-          {[
-            { label: "Privacy policy", href: "#" },
-            { label: "Terms of service", href: "#" },
-            { label: "Fees", href: "#" },
-          ].map((link, i) => (
-            <span key={link.label} style={{ display: "flex", alignItems: "center", gap: 0 }}>
-              {i > 0 && <span style={{ color: "#2a2d50", margin: "0 10px" }}>|</span>}
-              <a
-                href={link.href}
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  fontSize: 13,
-                  color: "#8888aa",
-                  textDecoration: "underline",
-                  textUnderlineOffset: 2,
-                  textDecorationColor: "#2a2d50",
-                  transition: "color 0.15s",
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "#8888aa")}
-              >
-                {link.label}
-              </a>
-            </span>
-          ))}
-        </div>
+        {/* Disclaimer */}
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: 11, color: "var(--text-dim)", textAlign: "center", lineHeight: 1.6 }}>
+          Not financial advice. Crypto assets carry risk. DYOR. By continuing you certify you are 18+.
+        </p>
       </div>
     </div>
   );
