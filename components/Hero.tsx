@@ -30,7 +30,7 @@ export default function Hero() {
               <span className="animate-ping" style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "var(--green-bright)", opacity: 0.4 }} />
               <span style={{ position: "relative", width: 6, height: 6, borderRadius: "50%", background: "var(--green-bright)", display: "inline-block" }} />
             </span>
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-dim)", letterSpacing: "0.06em" }}>LIVE · SOLANA MAINNET</span>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-dim)", letterSpacing: "0.06em" }}>LAUNCHING SOON · SOLANA MAINNET</span>
           </div>
           <div style={{ height: 12, width: 1, background: "var(--border)" }} />
           <a href="https://pump.fun" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-dim)", textDecoration: "none", letterSpacing: "0.06em", transition: "color 0.15s" }}
@@ -111,7 +111,7 @@ export default function Hero() {
               <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--text-dim)" }}>$CASHBACK / SOL · Pump.fun</span>
               <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
                 <span style={{ width: 5, height: 5, borderRadius: "50%", background: "var(--green-bright)", display: "inline-block" }} />
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--green-bright)" }}>LIVE</span>
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--text-dim)" }}>SOON</span>
               </div>
             </div>
 
@@ -119,23 +119,23 @@ export default function Hero() {
             <div style={{ padding: "20px 20px 0" }}>
               <div style={{ fontFamily: "var(--font-sans)", fontSize: 10, color: "var(--text-dim)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 6 }}>Last Price</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 16 }}>
-                <span style={{ fontFamily: "var(--font-mono)", fontWeight: 600, fontSize: 32, color: "var(--text)", letterSpacing: "-0.03em" }}>$0.00042069</span>
+                <span style={{ fontFamily: "var(--font-mono)", fontWeight: 600, fontSize: 32, color: "var(--text-dim)", letterSpacing: "-0.03em" }}>—</span>
                 <span style={{
-                  fontFamily: "var(--font-mono)", fontSize: 12, fontWeight: 500,
-                  color: "var(--green-bright)",
-                  background: "var(--green-dim)", border: "1px solid var(--green-border)",
+                  fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 500,
+                  color: "var(--text-dim)",
+                  background: "var(--bg-elevated)", border: "1px solid var(--border)",
                   padding: "2px 8px", borderRadius: "var(--radius-xs)",
-                }}>+14.2%</span>
+                }}>Not launched</span>
               </div>
 
               {/* Data grid */}
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0, borderTop: "1px solid var(--border-subtle)" }}>
                 {[
-                  { label: "Market Cap",   value: "$420,690" },
-                  { label: "24h Volume",   value: "$88,420" },
-                  { label: "Holders",      value: "1,247" },
+                  { label: "Market Cap",   value: "—" },
+                  { label: "24h Volume",   value: "—" },
+                  { label: "Holders",      value: "—" },
                   { label: "Total Supply", value: "1,000,000,000" },
-                  { label: "Fees (total)", value: "◎ 142.8" },
+                  { label: "Fees (total)", value: "—" },
                   { label: "Fee rate",     value: "0.50%" },
                 ].map((item, i) => (
                   <div key={item.label} style={{

@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import StatsMarquee from "@/components/StatsMarquee";
 import Leaderboard from "@/components/Leaderboard";
 import HowItWorks from "@/components/HowItWorks";
 import Footer from "@/components/Footer";
@@ -12,7 +11,6 @@ export default function Home() {
       <WelcomeModal />
       <Navbar />
       <Hero />
-      <StatsMarquee />
       <Leaderboard />
       <HowItWorks />
       <Footer />
