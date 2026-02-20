@@ -2,7 +2,7 @@
 import { PUMP_FUN_URL } from "@/lib/constants";
 
 const STEPS = [
-  { n: "01", icon: "👁", title: "Watch the feed", desc: "The live feed pulls real-time swap data from top $SPY holder wallets — showing exactly what tokens they're buying and selling across Pump.fun, Raydium, and Jupiter." },
+  { n: "01", icon: "👁", title: "Watch the feed", desc: "The live feed tracks top holders of BONK, WIF & POPCAT — the biggest Solana memecoin whales. See exactly what they're buying and selling across Pump.fun, Raydium, and Jupiter in real time." },
   { n: "02", icon: "🔍", title: "Track any wallet", desc: "Paste any Solana wallet address into the tracker to see their full recent swap history. Useful for following whales, researching wallets, or checking your own activity." },
   { n: "03", icon: "🔓", title: "Unlock pro with $SPY", desc: "Hold 1,000,000 $SPY tokens for pro access. Your balance is verified live from on-chain data — no login, no signup, just hold and access." },
 ];
