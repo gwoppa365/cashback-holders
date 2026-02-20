@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { PUMP_FUN_URL, SOLSCAN_URL } from "@/lib/constants";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -37,9 +38,9 @@ export default function Navbar() {
         {/* Links */}
         <div style={{ display: "flex", gap: 2 }}>
           {[
-            { label: "Overview",     href: "#overview" },
-            { label: "Leaderboard",  href: "#leaderboard" },
-            { label: "Mechanics",    href: "#mechanics" },
+            { label: "Overview",    href: "#overview" },
+            { label: "Leaderboard", href: "#leaderboard" },
+            { label: "Mechanics",   href: "#mechanics" },
           ].map((l) => (
             <a key={l.label} href={l.href} style={{
               fontFamily: "var(--font-sans)", fontSize: 13, fontWeight: 400,
@@ -55,7 +56,7 @@ export default function Navbar() {
 
         {/* Right */}
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <a href="https://solscan.io" target="_blank" rel="noopener noreferrer" style={{
+          <a href={SOLSCAN_URL} target="_blank" rel="noopener noreferrer" style={{
             fontFamily: "var(--font-sans)", fontSize: 12, fontWeight: 500,
             color: "var(--text-muted)", textDecoration: "none",
             padding: "6px 12px", borderRadius: "var(--radius-sm)",
@@ -66,7 +67,7 @@ export default function Navbar() {
           onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "var(--text-muted)"; (e.currentTarget as HTMLElement).style.borderColor = "var(--border)"; }}
           >Verify on-chain ↗</a>
 
-          <a href="https://pump.fun" target="_blank" rel="noopener noreferrer" style={{
+          <a href={PUMP_FUN_URL} target="_blank" rel="noopener noreferrer" style={{
             fontFamily: "var(--font-sans)", fontSize: 12, fontWeight: 600,
             color: "#080b0f", background: "var(--green-bright)",
             textDecoration: "none", padding: "6px 14px",

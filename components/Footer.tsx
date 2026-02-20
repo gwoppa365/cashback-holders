@@ -1,4 +1,5 @@
 "use client";
+import { PUMP_FUN_URL, SOLSCAN_URL } from "@/lib/constants";
 
 export default function Footer() {
   return (
@@ -48,8 +49,8 @@ export default function Footer() {
           <div>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: 10, fontWeight: 600, color: "var(--text-dim)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 16 }}>Ecosystem</p>
             {[
-              { label: "Pump.fun",    href: "https://pump.fun" },
-              { label: "Solscan",     href: "https://solscan.io" },
+              { label: "Pump.fun",    href: PUMP_FUN_URL },
+              { label: "Solscan",     href: SOLSCAN_URL },
               { label: "Solana FM",   href: "https://solana.fm" },
               { label: "Birdeye",     href: "https://birdeye.so" },
             ].map(({ label, href }) => (

@@ -1,6 +1,41 @@
 "use client";
-// v2
+// v3 — live data
+import { useQuery } from "@tanstack/react-query";
+import { TOKEN_MINT, PUMP_FUN_URL, SOLSCAN_URL } from "@/lib/constants";
+
+function fmt(n: number | null, prefix = "", decimals = 2): string {
+  if (n === null || n === undefined) return "—";
+  if (n >= 1_000_000) return `${prefix}${(n / 1_000_000).toFixed(decimals)}M`;
+  if (n >= 1_000)     return `${prefix}${(n / 1_000).toFixed(decimals)}K`;
+  return `${prefix}${n.toFixed(decimals)}`;
+}
+
+function fmtPrice(n: number | null): string {
+  if (n === null || n === undefined) return "—";
+  if (n < 0.000001) return `$${n.toExponential(2)}`;
+  if (n < 0.01)     return `$${n.toFixed(8)}`;
+  return `$${n.toFixed(4)}`;
+}
+
 export default function Hero() {
+  const { data, isLoading } = useQuery({
+    queryKey: ["token"],
+    queryFn:  () => fetch("/api/token").then((r) => r.json()),
+  });
+
+  const isLive    = !isLoading && data && !data.error;
+  const change    = data?.priceChange24h ?? null;
+  const changePos = change !== null && change >= 0;
+
+  const stats = [
+    { label: "Market Cap",   value: fmt(data?.marketCap ?? null, "$") },
+    { label: "24h Volume",   value: fmt(data?.volume24h ?? null, "$") },
+    { label: "Holders",      value: data?.holders ? data.holders.toLocaleString() : "—" },
+    { label: "Total Supply", value: "1,000,000,000" },
+    { label: "Fees (24h)",   value: data?.feesEstimatedSol ? `◎ ${data.feesEstimatedSol}` : "—" },
+    { label: "Fee rate",     value: "0.50%" },
+  ];
+
   return (
     <section style={{
       background: "var(--bg)",
@@ -30,10 +65,13 @@ export default function Hero() {
               <span className="animate-ping" style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "var(--green-bright)", opacity: 0.4 }} />
               <span style={{ position: "relative", width: 6, height: 6, borderRadius: "50%", background: "var(--green-bright)", display: "inline-block" }} />
             </span>
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-dim)", letterSpacing: "0.06em" }}>LAUNCHING SOON · SOLANA MAINNET</span>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-dim)", letterSpacing: "0.06em" }}>
+              {isLive ? "LIVE · SOLANA MAINNET" : "LAUNCHING SOON · SOLANA MAINNET"}
+            </span>
           </div>
           <div style={{ height: 12, width: 1, background: "var(--border)" }} />
-          <a href="https://pump.fun" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-dim)", textDecoration: "none", letterSpacing: "0.06em", transition: "color 0.15s" }}
+          <a href={PUMP_FUN_URL} target="_blank" rel="noopener noreferrer"
+            style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-dim)", textDecoration: "none", letterSpacing: "0.06em", transition: "color 0.15s" }}
             onMouseEnter={(e) => (e.currentTarget.style.color = "var(--text-muted)")}
             onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-dim)")}
           >PUMP.FUN</a>
@@ -71,7 +109,7 @@ export default function Hero() {
             </p>
 
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 64 }}>
-              <a href="https://pump.fun" target="_blank" rel="noopener noreferrer" style={{
+              <a href={PUMP_FUN_URL} target="_blank" rel="noopener noreferrer" style={{
                 fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: 14,
                 color: "#080b0f", background: "var(--green-bright)",
                 textDecoration: "none", padding: "10px 20px",
@@ -106,12 +144,16 @@ export default function Hero() {
               borderBottom: "1px solid var(--border)",
             }}>
               <div style={{ display: "flex", gap: 6 }}>
-                {["#da3633","#bb8009","#2ea043"].map((c) => <div key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c, opacity: 0.7 }} />)}
+                {["#da3633","#bb8009","#2ea043"].map((c) => (
+                  <div key={c} style={{ width: 10, height: 10, borderRadius: "50%", background: c, opacity: 0.7 }} />
+                ))}
               </div>
               <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--text-dim)" }}>$CASHBACK / SOL · Pump.fun</span>
               <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                <span style={{ width: 5, height: 5, borderRadius: "50%", background: "var(--green-bright)", display: "inline-block" }} />
-                <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--text-dim)" }}>SOON</span>
+                <span style={{ width: 5, height: 5, borderRadius: "50%", background: isLive ? "var(--green-bright)" : "var(--text-dim)", display: "inline-block" }} />
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: 10, color: "var(--text-dim)" }}>
+                  {isLive ? "LIVE" : "SOON"}
+                </span>
               </div>
             </div>
 
@@ -119,25 +161,32 @@ export default function Hero() {
             <div style={{ padding: "20px 20px 0" }}>
               <div style={{ fontFamily: "var(--font-sans)", fontSize: 10, color: "var(--text-dim)", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 6 }}>Last Price</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 16 }}>
-                <span style={{ fontFamily: "var(--font-mono)", fontWeight: 600, fontSize: 32, color: "var(--text-dim)", letterSpacing: "-0.03em" }}>—</span>
-                <span style={{
-                  fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 500,
-                  color: "var(--text-dim)",
-                  background: "var(--bg-elevated)", border: "1px solid var(--border)",
-                  padding: "2px 8px", borderRadius: "var(--radius-xs)",
-                }}>Not launched</span>
+                <span style={{ fontFamily: "var(--font-mono)", fontWeight: 600, fontSize: 32, color: isLive ? "var(--text)" : "var(--text-dim)", letterSpacing: "-0.03em" }}>
+                  {fmtPrice(data?.price ?? null)}
+                </span>
+                {change !== null ? (
+                  <span style={{
+                    fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 500,
+                    color: changePos ? "var(--green-bright)" : "var(--red)",
+                    background: changePos ? "rgba(63,185,80,0.1)" : "rgba(218,54,51,0.1)",
+                    border: `1px solid ${changePos ? "rgba(63,185,80,0.2)" : "rgba(218,54,51,0.2)"}`,
+                    padding: "2px 8px", borderRadius: "var(--radius-xs)",
+                  }}>
+                    {changePos ? "+" : ""}{change.toFixed(2)}%
+                  </span>
+                ) : (
+                  <span style={{
+                    fontFamily: "var(--font-mono)", fontSize: 11, fontWeight: 500,
+                    color: "var(--text-dim)",
+                    background: "var(--bg-elevated)", border: "1px solid var(--border)",
+                    padding: "2px 8px", borderRadius: "var(--radius-xs)",
+                  }}>Not launched</span>
+                )}
               </div>
 
               {/* Data grid */}
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0, borderTop: "1px solid var(--border-subtle)" }}>
-                {[
-                  { label: "Market Cap",   value: "—" },
-                  { label: "24h Volume",   value: "—" },
-                  { label: "Holders",      value: "—" },
-                  { label: "Total Supply", value: "1,000,000,000" },
-                  { label: "Fees (total)", value: "—" },
-                  { label: "Fee rate",     value: "0.50%" },
-                ].map((item, i) => (
+                {stats.map((item, i) => (
                   <div key={item.label} style={{
                     padding: "11px 0",
                     borderTop: "1px solid var(--border-subtle)",
@@ -155,14 +204,14 @@ export default function Hero() {
             {/* Contract address */}
             <div style={{ padding: "12px 20px", borderTop: "1px solid var(--border-subtle)", background: "var(--bg-elevated)" }}>
               <div style={{ fontFamily: "var(--font-sans)", fontSize: 10, color: "var(--text-dim)", marginBottom: 4, textTransform: "uppercase", letterSpacing: "0.06em" }}>Contract Address</div>
-              <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-muted)" }}>
-                TBA — configure after launch
+              <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--text-muted)", wordBreak: "break-all" }}>
+                {TOKEN_MINT}
               </div>
             </div>
 
             {/* Action */}
             <div style={{ padding: "12px 20px 20px" }}>
-              <a href="https://pump.fun" target="_blank" rel="noopener noreferrer" style={{
+              <a href={PUMP_FUN_URL} target="_blank" rel="noopener noreferrer" style={{
                 display: "block", textAlign: "center", width: "100%",
                 fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: 13,
                 color: "#080b0f", background: "var(--green-bright)",

@@ -1,5 +1,6 @@
 "use client";
-import { MOCK_TOKEN, MOCK_FEE_CHART } from "@/lib/mock-data";
+import { useQuery } from "@tanstack/react-query";
+import { MOCK_FEE_CHART } from "@/lib/mock-data";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ComposedChart, Bar } from "recharts";
 
 const Tooltip_ = ({ active, payload, label }: any) => {
@@ -22,8 +23,37 @@ const Tooltip_ = ({ active, payload, label }: any) => {
 };
 
 export default function FeeTracker() {
-  const totalUsd = MOCK_TOKEN.creatorFeeUsd;
-  const avgDaily = (MOCK_TOKEN.creatorFeeSol / 14).toFixed(1);
+  const { data } = useQuery({
+    queryKey: ["token"],
+    queryFn:  () => fetch("/api/token").then((r) => r.json()),
+  });
+
+  const fees24h    = data?.feesEstimatedSol ?? null;
+  const volume24h  = data?.volume24h ?? null;
+  const txns24h    = data?.txns24h ?? null;
+
+  const metrics = [
+    {
+      label: "Fees Generated (24h)",
+      value: fees24h ? `◎ ${fees24h}` : "—",
+      sub:   fees24h && data?.price ? `≈ $${(fees24h * (data.price / data.priceNative)).toFixed(2)} USD` : "Based on 0.5% of 24h volume",
+    },
+    {
+      label: "24h Volume",
+      value: volume24h ? `$${(volume24h / 1000).toFixed(1)}K` : "—",
+      sub:   "Pump.fun bonding curve",
+    },
+    {
+      label: "Fee Rate Per Trade",
+      value: "0.50%",
+      sub:   "Bonding curve, all sides",
+    },
+    {
+      label: "24h Transactions",
+      value: txns24h ? txns24h.toLocaleString() : "—",
+      sub:   "Buys + sells combined",
+    },
+  ];
 
   return (
     <section id="distribution" style={{ padding: "80px 0", background: "var(--bg-card)", borderTop: "1px solid var(--border)" }}>
@@ -45,16 +75,11 @@ export default function FeeTracker() {
 
             {/* Key metrics */}
             <div style={{ display: "flex", flexDirection: "column", gap: 0, border: "1px solid var(--border)", borderRadius: "var(--radius-lg)", overflow: "hidden" }}>
-              {[
-                { label: "Total SOL Distributed",   value: `◎ ${MOCK_TOKEN.creatorFeeSol}`, sub: `≈ $${totalUsd.toLocaleString()} USD` },
-                { label: "Average Daily Output",     value: `◎ ${avgDaily}`,                sub: "Over 14-day period" },
-                { label: "Fee Rate Per Trade",        value: "0.50%",                        sub: "Bonding curve, all sides" },
-                { label: "All-time Trades",           value: "28,541",                       sub: "Since token creation" },
-              ].map((s, i) => (
+              {metrics.map((s, i) => (
                 <div key={s.label} style={{
                   display: "flex", justifyContent: "space-between", alignItems: "center",
                   padding: "14px 18px",
-                  borderBottom: i < 3 ? "1px solid var(--border-subtle)" : "none",
+                  borderBottom: i < metrics.length - 1 ? "1px solid var(--border-subtle)" : "none",
                   background: i % 2 === 0 ? "var(--bg-card)" : "var(--bg-elevated)",
                 }}>
                   <div>
